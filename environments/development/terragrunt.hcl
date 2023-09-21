@@ -9,6 +9,9 @@ locals {
 
 # These are inputs that need to be passed for the terragrunt configuration
 inputs = {
+  aws_region = "eu-west-2"
+  env_prefix = "dev"
+  environment = "${local.environment}"
   tags = {
     Terraform   = "true"
     Environment = "${local.environment}"

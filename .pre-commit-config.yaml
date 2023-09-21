@@ -1,0 +1,31 @@
+repos:
+- repo: https://github.com/gruntwork-io/pre-commit
+  rev: v0.1.22 # Get the latest from: https://github.com/gruntwork-io/pre-commit/releases
+  hooks:
+    - id: terraform-validate
+    - id: terraform-fmt
+- repo: https://github.com/antonbabenko/pre-commit-terraform
+  rev: v1.83.3 # Get the latest from: https://github.com/antonbabenko/pre-commit-terraform/releases
+  hooks:
+    - id: terraform_tfsec
+    - id: terraform_docs
+    - id: terraform_checkov
+    - id: terraform_tflint
+      args:
+      - '--args=--enable-rule=terraform_deprecated_interpolation'
+      - '--args=--enable-rule=terraform_deprecated_index'
+      - '--args=--enable-rule=terraform_unused_declarations'
+      - '--args=--enable-rule=terraform_comment_syntax'
+      - '--args=--enable-rule=terraform_documented_outputs'
+      - '--args=--enable-rule=terraform_documented_variables'
+      - '--args=--enable-rule=terraform_typed_variables'
+      - '--args=--enable-rule=terraform_naming_convention'
+      - '--args=--enable-rule=terraform_required_version'
+      - '--args=--enable-rule=terraform_required_providers'
+      - '--args=--enable-rule=terraform_unused_required_providers'
+      - '--args=--enable-rule=terraform_standard_module_structure'
+- repo: https://github.com/commitizen-tools/commitizen
+  rev: 3.9.0 # Get the latest from: https://github.com/commitizen-tools/commitizen/releases
+  hooks:
+    - id: commitizen
+      stages: [commit-msg]

@@ -28,8 +28,20 @@ resource "aws_sagemaker_notebook_instance" "notebook_instance" {
   security_groups = var.security_group
 
   tags = merge(
-    local.common_tags
-  )
+    local.common_tags,
+    {
+      git_commit           = "b83edca78f80ac4ef687fc51341fb3c82b96f70e"
+      git_file             = "modules/sagemaker/main.tf"
+      git_last_modified_at = "2023-09-21 21:49:17"
+      git_last_modified_by = "kwame_mintah@hotmail.co.uk"
+      git_modifiers        = "kwame_mintah"
+      git_org              = "kwame-mintah"
+      git_repo             = "terraform-aws-machine-learning-pipeline"
+      yor_trace            = "b9fda050-f6ad-4029-ae4d-2cfee651deda"
+    },
+    {
+      yor_name = "notebook_instance"
+  })
 }
 
 #---------------------------------------------------
@@ -39,6 +51,22 @@ resource "aws_iam_role" "sagemaker_execution_role" {
   name               = "SageMakerExecutionRole"
   path               = "/"
   assume_role_policy = data.aws_iam_policy_document.sagemaker_assume_policy.json
+
+  tags = merge(
+    local.common_tags,
+    {
+      git_commit           = "N/A"
+      git_file             = "modules/sagemaker/main.tf"
+      git_last_modified_at = "2023-09-22 16:38:59"
+      git_last_modified_by = "kwame_mintah@hotmail.co.uk"
+      git_modifiers        = "kwame_mintah"
+      git_org              = "kwame-mintah"
+      git_repo             = "terraform-aws-machine-learning-pipeline"
+      yor_trace            = "42187633-f1cd-4c17-8b0d-e307f8abd446"
+    },
+    {
+      yor_name = "sagemaker_execution_role"
+  })
 }
 
 resource "aws_iam_role_policy_attachment" "sagemaker_notebook_instance_policy" {
@@ -49,6 +77,22 @@ resource "aws_iam_role_policy_attachment" "sagemaker_notebook_instance_policy" {
 resource "aws_iam_policy" "sagemaker_notebook_policy" {
   name   = "sagemaker-notebook-policy"
   policy = data.aws_iam_policy_document.sagemaker_notebook_instance_policy.json
+
+  tags = merge(
+    local.common_tags,
+    {
+      git_commit           = "N/A"
+      git_file             = "modules/sagemaker/main.tf"
+      git_last_modified_at = "2023-09-22 16:38:59"
+      git_last_modified_by = "kwame_mintah@hotmail.co.uk"
+      git_modifiers        = "kwame_mintah"
+      git_org              = "kwame-mintah"
+      git_repo             = "terraform-aws-machine-learning-pipeline"
+      yor_trace            = "9e5cda28-f847-4a49-b780-ffa51c3ab15d"
+    },
+    {
+      yor_name = "sagemaker_notebook_policy"
+  })
 }
 
 data "aws_iam_policy_document" "sagemaker_assume_policy" {
@@ -110,8 +154,20 @@ resource "aws_kms_key" "kms" {
   enable_key_rotation     = true
 
   tags = merge(
-    local.common_tags
-  )
+    local.common_tags,
+    {
+      git_commit           = "b83edca78f80ac4ef687fc51341fb3c82b96f70e"
+      git_file             = "modules/sagemaker/main.tf"
+      git_last_modified_at = "2023-09-21 21:49:17"
+      git_last_modified_by = "kwame_mintah@hotmail.co.uk"
+      git_modifiers        = "kwame_mintah"
+      git_org              = "kwame-mintah"
+      git_repo             = "terraform-aws-machine-learning-pipeline"
+      yor_trace            = "75d75562-0366-4d8c-912e-5c9730137e23"
+    },
+    {
+      yor_name = "kms"
+  })
 }
 
 resource "aws_kms_alias" "kms_alias" {

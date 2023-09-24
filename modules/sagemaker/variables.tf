@@ -17,26 +17,6 @@ EOF
   default = "ml.t3.medium"
 }
 
-variable "security_group" {
-  description = <<-EOF
-    The associated security groups.
-    
-EOF
-
-  type    = set(string)
-  default = null
-}
-
-variable "subnet_id" {
-  description = <<-EOF
-    The VPC subnet ID.
-    
-EOF
-
-  type    = string
-  default = null
-}
-
 variable "tags" {
   description = <<-EOF
     Tags to be added to resources created.
@@ -45,4 +25,22 @@ EOF
 
   type    = map(string)
   default = {}
+}
+
+variable "vpc_id" {
+  description = <<-EOF
+    The VPC ID.
+    
+EOF
+
+  type = string
+}
+
+variable "vpc_ipv4_cidr_block" {
+  description = <<-EOF
+    The IPv4 CIDR block for the VPC.
+    
+EOF
+
+  type = string
 }

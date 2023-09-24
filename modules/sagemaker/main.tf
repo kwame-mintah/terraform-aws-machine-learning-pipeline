@@ -19,20 +19,26 @@ data "aws_caller_identity" "current_caller_identity" {}
 # Notebook Instance
 #---------------------------------------------------
 resource "aws_sagemaker_notebook_instance" "notebook_instance" {
-  name            = "${var.name}-${random_string.resource_code.result}"
-  role_arn        = aws_iam_role.sagemaker_execution_role.arn
-  instance_type   = var.instance_type
-  root_access     = "Disabled"
-  kms_key_id      = aws_kms_key.kms.key_id
-  subnet_id       = var.subnet_id
-  security_groups = var.security_group
+  name                   = "${var.name}-${random_string.resource_code.result}"
+  role_arn               = aws_iam_role.sagemaker_execution_role.arn
+  instance_type          = var.instance_type
+  platform_identifier    = "notebook-al2-v2"
+  root_access            = "Disabled"
+  direct_internet_access = "Enabled"
+  # TODO: Create NAT Gateway to allow outbound connections for notebook instance
+  #checkov:skip=CKV_AWS_122:to train or host models from a notebook, you need internet access. no NAT gateway created yet.
+  kms_key_id            = aws_kms_key.kms.key_id
+  subnet_id             = aws_subnet.sagemaker_subnet.id
+  security_groups       = [aws_security_group.sagemaker_sg.id]
+  lifecycle_config_name = aws_sagemaker_notebook_instance_lifecycle_configuration.lifecycle_configuration.name
+
 
   tags = merge(
     local.common_tags,
     {
-      git_commit           = "b83edca78f80ac4ef687fc51341fb3c82b96f70e"
+      git_commit           = "N/A"
       git_file             = "modules/sagemaker/main.tf"
-      git_last_modified_at = "2023-09-21 21:49:17"
+      git_last_modified_at = "2023-09-24 19:22:55"
       git_last_modified_by = "kwame_mintah@hotmail.co.uk"
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"
@@ -42,6 +48,14 @@ resource "aws_sagemaker_notebook_instance" "notebook_instance" {
     {
       yor_name = "notebook_instance"
   })
+}
+
+#---------------------------------------------------
+# Lifecycle configurations
+#---------------------------------------------------
+resource "aws_sagemaker_notebook_instance_lifecycle_configuration" "lifecycle_configuration" {
+  name     = "ml-pipeline"
+  on_start = base64encode("echo how you doing")
 }
 
 #---------------------------------------------------
@@ -55,9 +69,9 @@ resource "aws_iam_role" "sagemaker_execution_role" {
   tags = merge(
     local.common_tags,
     {
-      git_commit           = "N/A"
+      git_commit           = "67510c9c678c24f512fed084ee37c5a9984c4e76"
       git_file             = "modules/sagemaker/main.tf"
-      git_last_modified_at = "2023-09-22 16:38:59"
+      git_last_modified_at = "2023-09-22 16:41:14"
       git_last_modified_by = "kwame_mintah@hotmail.co.uk"
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"
@@ -81,9 +95,9 @@ resource "aws_iam_policy" "sagemaker_notebook_policy" {
   tags = merge(
     local.common_tags,
     {
-      git_commit           = "N/A"
+      git_commit           = "67510c9c678c24f512fed084ee37c5a9984c4e76"
       git_file             = "modules/sagemaker/main.tf"
-      git_last_modified_at = "2023-09-22 16:38:59"
+      git_last_modified_at = "2023-09-22 16:41:14"
       git_last_modified_by = "kwame_mintah@hotmail.co.uk"
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"
@@ -110,6 +124,7 @@ data "aws_iam_policy_document" "sagemaker_assume_policy" {
 #tfsec:ignore:aws-iam-no-policy-wildcards
 data "aws_iam_policy_document" "sagemaker_notebook_instance_policy" {
   statement {
+    sid = "AdditionalPolicy"
     actions = [
       "cloudwatch:*",
       "elasticfilesystem:DescribeFileSystems",
@@ -209,4 +224,58 @@ data "aws_iam_policy_document" "kms_policy" {
     }
     resources = [aws_sagemaker_notebook_instance.notebook_instance.arn]
   }
+}
+
+
+#---------------------------------------------------
+# Networking
+#---------------------------------------------------
+#tfsec:ignore:aws-vpc-no-public-egress-sgr
+resource "aws_security_group" "sagemaker_sg" {
+  name        = "${var.name}-sagemaker-sg"
+  description = "Allow access to SageMaker"
+  vpc_id      = var.vpc_id
+
+  egress {
+    description = "All traffic"
+    protocol    = "-1"
+    from_port   = 0
+    to_port     = 0
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = merge(
+    local.common_tags,
+    {
+      "Name" = "${var.name}-sagemaker-sg"
+    }
+  )
+}
+
+resource "aws_subnet" "sagemaker_subnet" {
+  vpc_id     = var.vpc_id
+  cidr_block = cidrsubnet(var.vpc_ipv4_cidr_block, "10", 1)
+
+  tags = merge(
+    local.common_tags,
+    {
+      "Name" = "${var.name}-subnet-1"
+      "Tier" = "Private"
+    }
+  )
+}
+
+resource "aws_route_table" "route_table" {
+  vpc_id = var.vpc_id
+  tags = merge(
+    local.common_tags,
+    {
+      Name = "${var.name}-route-table"
+    }
+  )
+}
+
+resource "aws_route_table_association" "route_table_association" {
+  subnet_id      = aws_subnet.sagemaker_subnet.id
+  route_table_id = aws_route_table.route_table.id
 }

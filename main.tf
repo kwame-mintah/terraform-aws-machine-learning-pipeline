@@ -20,7 +20,7 @@ resource "aws_vpc" "application_vpc" {
     {
       git_commit           = "N/A"
       git_file             = "main.tf"
-      git_last_modified_at = "2023-09-24 19:22:54"
+      git_last_modified_at = "2023-09-24 20:20:24"
       git_last_modified_by = "kwame_mintah@hotmail.co.uk"
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"

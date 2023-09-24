@@ -36,9 +36,9 @@ resource "aws_sagemaker_notebook_instance" "notebook_instance" {
   tags = merge(
     local.common_tags,
     {
-      git_commit           = "N/A"
+      git_commit           = "e131b949f91e6b10bef6ccdfdee957bae92b01b3"
       git_file             = "modules/sagemaker/main.tf"
-      git_last_modified_at = "2023-09-24 19:22:55"
+      git_last_modified_at = "2023-09-24 20:09:33"
       git_last_modified_by = "kwame_mintah@hotmail.co.uk"
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"
@@ -248,8 +248,18 @@ resource "aws_security_group" "sagemaker_sg" {
     local.common_tags,
     {
       "Name" = "${var.name}-sagemaker-sg"
-    }
-  )
+    },
+    {
+      git_commit           = "e131b949f91e6b10bef6ccdfdee957bae92b01b3"
+      git_file             = "modules/sagemaker/main.tf"
+      git_last_modified_at = "2023-09-24 20:09:33"
+      git_last_modified_by = "kwame_mintah@hotmail.co.uk"
+      git_modifiers        = "kwame_mintah"
+      git_org              = "kwame-mintah"
+      git_repo             = "terraform-aws-machine-learning-pipeline"
+      yor_name             = "sagemaker_sg"
+      yor_trace            = "2bd66a0b-97dc-4d6a-9233-2d91671970f8"
+  })
 }
 
 resource "aws_subnet" "sagemaker_subnet" {
@@ -261,8 +271,18 @@ resource "aws_subnet" "sagemaker_subnet" {
     {
       "Name" = "${var.name}-subnet-1"
       "Tier" = "Private"
-    }
-  )
+    },
+    {
+      git_commit           = "e131b949f91e6b10bef6ccdfdee957bae92b01b3"
+      git_file             = "modules/sagemaker/main.tf"
+      git_last_modified_at = "2023-09-24 20:09:33"
+      git_last_modified_by = "kwame_mintah@hotmail.co.uk"
+      git_modifiers        = "kwame_mintah"
+      git_org              = "kwame-mintah"
+      git_repo             = "terraform-aws-machine-learning-pipeline"
+      yor_name             = "sagemaker_subnet"
+      yor_trace            = "97b46e2a-b83c-4921-8698-5f57fee65925"
+  })
 }
 
 resource "aws_route_table" "route_table" {
@@ -271,8 +291,18 @@ resource "aws_route_table" "route_table" {
     local.common_tags,
     {
       Name = "${var.name}-route-table"
-    }
-  )
+    },
+    {
+      git_commit           = "e131b949f91e6b10bef6ccdfdee957bae92b01b3"
+      git_file             = "modules/sagemaker/main.tf"
+      git_last_modified_at = "2023-09-24 20:09:33"
+      git_last_modified_by = "kwame_mintah@hotmail.co.uk"
+      git_modifiers        = "kwame_mintah"
+      git_org              = "kwame-mintah"
+      git_repo             = "terraform-aws-machine-learning-pipeline"
+      yor_name             = "route_table"
+      yor_trace            = "07004bb7-76cb-4c41-8541-342a8377beea"
+  })
 }
 
 resource "aws_route_table_association" "route_table_association" {

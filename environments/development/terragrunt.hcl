@@ -4,7 +4,7 @@ terraform {
 }
 
 locals {
-  environment = "Development"
+  environment = "development"
 }
 
 # These are inputs that need to be passed for the terragrunt configuration

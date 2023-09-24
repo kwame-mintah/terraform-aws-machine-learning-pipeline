@@ -7,9 +7,9 @@ EOF
   type = string
 }
 
-variable "environment" {
+variable "application_vpc_ipv4_cidr_block" {
   description = <<-EOF
-  The name of the _environment_ to help identify resources.
+  TThe IPv4 CIDR block for the VPC.
 
 EOF
 
@@ -27,6 +27,15 @@ EOF
     condition     = contains(["dev", "staging", "prod", "sandbox"], var.env_prefix)
     error_message = "The env_prefix value must be either: dev, staging, prod or sandbox."
   }
+}
+
+variable "project_name" {
+  description = <<-EOF
+  The name of the project.
+
+EOF
+
+  type = string
 }
 
 variable "tags" {

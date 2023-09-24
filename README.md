@@ -69,6 +69,7 @@ Code formatting and documentation for `variables` and `outputs` is generated usi
 
 | Name | Type |
 |------|------|
+| [aws_vpc.application_vpc](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc) | resource |
 | [aws_availability_zones.avaliabile_zones](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/availability_zones) | data source |
 | [aws_caller_identity.current_caller_identity](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
 
@@ -76,9 +77,10 @@ Code formatting and documentation for `variables` and `outputs` is generated usi
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_application_vpc_ipv4_cidr_block"></a> [application\_vpc\_ipv4\_cidr\_block](#input\_application\_vpc\_ipv4\_cidr\_block) | TThe IPv4 CIDR block for the VPC. | `string` | n/a | yes |
 | <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | The AWS region. | `string` | n/a | yes |
 | <a name="input_env_prefix"></a> [env\_prefix](#input\_env\_prefix) | The prefix added to resources in the environment. | `string` | n/a | yes |
-| <a name="input_environment"></a> [environment](#input\_environment) | The name of the _environment_ to help identify resources. | `string` | n/a | yes |
+| <a name="input_project_name"></a> [project\_name](#input\_project\_name) | The name of the project. | `string` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags to be added to resources created. | `map(string)` | `{}` | no |
 
 ## Outputs

@@ -7,11 +7,14 @@ locals {
   environment = "development"
 }
 
+include {
+  path = find_in_parent_folders()
+}
+
 # These are inputs that need to be passed for the terragrunt configuration
 inputs = {
-  aws_region = "eu-west-2"
-  env_prefix = "dev"
-  environment = "${local.environment}"
+  env_prefix                      = "dev"
+  application_vpc_ipv4_cidr_block = "10.20.0.0/16"
   tags = {
     Terraform   = "true"
     Environment = "${local.environment}"

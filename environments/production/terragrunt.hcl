@@ -7,10 +7,14 @@ locals {
   environment = "production"
 }
 
+include {
+  path = find_in_parent_folders()
+}
+
 # These are inputs that need to be passed for the terragrunt configuration
 inputs = {
   tags = {
-    Terraform = "true"
+    Terraform   = "true"
     Environment = "${local.environment}"
   }
 }

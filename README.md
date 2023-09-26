@@ -1,6 +1,7 @@
-# Terraform AWS Template
+# Terraform AWS Machine Learning Pipeline
 
-The main purpose of this repository is to create a template for [Terraform](https://www.terraform.io/). This project will focus on the [AWS](https://registry.terraform.io/providers/hashicorp/aws/latest) provider.
+The main purpose of this repository is to create resources needed for Machine Learning within AWS. And to have a better understanding of Machine Learning Operations (MLOps).
+You can find notes for made while learning in my [notes-md](https://github.com/kwame-mintah/notes-md).
 
 ## Development
 
@@ -23,10 +24,19 @@ The main purpose of this repository is to create a template for [Terraform](http
 3. If you're happy with the changes `terragrunt apply`.
 
 > **IMPORTANT**
-> 
-> Please note that `.tfstate` files are stored locally on your machine as local backend has been specified. If you would like to properly version control your state files, it is possible to use an AWS S3 bucket to store these files. 
+>
+> Please note that `.tfstate` files are stored locally on your machine as local backend has been specified. If you would like to properly version control your state files, it is possible to use an AWS S3 bucket to store these files.
 > This will ensure anyone else other than you running a plan/apply will always be using the same state file.
-> 
+
+## GitHub Action (CI/CD)
+
+A IAM user will need to be created within the AWS account, this will be used for the GitHub workflows (`.github/workflows`) that will deploy resources using [`terragrunt-action`](https://github.com/gruntwork-io/terragrunt-action). The following repository actions secrets and variables need to be set
+
+| Secret                | Description                                      |
+| --------------------- | ------------------------------------------------ |
+| AWS_REGION            | The AWS Region, can also use AWS_DEFAULT_REGION. |
+| AWS_ACCESS_KEY_ID     | The AWS access key.                              |
+| AWS_SECRET_ACCESS_KEY | The AWS secret key.                              |
 
 ## Pre-Commit hooks
 
@@ -41,11 +51,13 @@ Additionally, once installed, the hooks can be updated to the latest available v
 ## Documentation Generation
 
 Code formatting and documentation for `variables` and `outputs` is generated using [pre-commit-terraform](https://github.com/antonbabenko/pre-commit-terraform/releases) hooks that in turn uses [terraform-docs](https://github.com/terraform-docs/terraform-docs) that will insert/update documentation. The following markers have been added to the `README.md`:
+
 ```
 <!-- {BEGINNING|END} OF PRE-COMMIT-TERRAFORM DOCS HOOK --->
 ```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK --->
+
 ## Requirements
 
 | Name | Version |
@@ -89,4 +101,5 @@ Code formatting and documentation for `variables` and `outputs` is generated usi
 |------|-------------|
 | <a name="output_availability_zones"></a> [availability\_zones](#output\_availability\_zones) | List of the Availability Zone names available to the account. |
 | <a name="output_current_caller_identity"></a> [current\_caller\_identity](#output\_current\_caller\_identity) | AWS Account ID number of the account that owns or contains the <br>calling entity. |
+
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK --->

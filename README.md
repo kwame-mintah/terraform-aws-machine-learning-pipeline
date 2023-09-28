@@ -20,13 +20,14 @@ You can find notes for made while learning in my [notes-md](https://github.com/k
 ## Usage
 
 1. Navigate to the environment you would like to deploy,
-2. Plan your changes with `terragrunt plan` to see what changes will be made,
-3. If you're happy with the changes `terragrunt apply`.
+2. Initialize the configuration with `aws-vault exec <profile> --no-session terragrunt init`,
+3. Plan your changes with `aws-vault exec <profile> --no-session terragrunt plan` to see what changes will be made,
+4. If you're happy with the changes `aws-vault exec <profile> --no-session terragrunt apply`.
 
-> **IMPORTANT**
+> **NOTE**
 >
-> Please note that `.tfstate` files are stored locally on your machine as local backend has been specified. If you would like to properly version control your state files, it is possible to use an AWS S3 bucket to store these files.
-> This will ensure anyone else other than you running a plan/apply will always be using the same state file.
+> Please note that terragrunt will create an S3 Bucket and DynamoDB table, for storing the remote state. 
+> Ensure the account deploying the resources has the appropriate permissions to create or connect to these resources.
 
 ## GitHub Action (CI/CD)
 

@@ -11,6 +11,18 @@ locals {
 }
 
 
+generate "provider" {
+  path      = "provider_override.tf"
+  if_exists = "overwrite_terragrunt"
+  contents  = <<EOF
+provider "aws" {
+  region              = "${local.aws_region}"
+  allowed_account_ids = ["${local.account_id}"]
+}
+EOF
+}
+
+
 remote_state {
   backend = "s3"
   config = {

@@ -58,7 +58,6 @@ Code formatting and documentation for `variables` and `outputs` is generated usi
 ```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK --->
-
 ## Requirements
 
 | Name | Version |
@@ -102,5 +101,4 @@ Code formatting and documentation for `variables` and `outputs` is generated usi
 |------|-------------|
 | <a name="output_availability_zones"></a> [availability\_zones](#output\_availability\_zones) | List of the Availability Zone names available to the account. |
 | <a name="output_current_caller_identity"></a> [current\_caller\_identity](#output\_current\_caller\_identity) | AWS Account ID number of the account that owns or contains the <br>calling entity. |
-
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK --->

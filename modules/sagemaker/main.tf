@@ -67,9 +67,9 @@ resource "aws_iam_role" "sagemaker_execution_role" {
   tags = merge(
     local.common_tags,
     {
-      git_commit           = "67510c9c678c24f512fed084ee37c5a9984c4e76"
+      git_commit           = "6a8a81c800dcaefed70b28d8692080306b9ae9fc"
       git_file             = "modules/sagemaker/main.tf"
-      git_last_modified_at = "2023-09-22 16:41:14"
+      git_last_modified_at = "2023-10-03 21:19:32"
       git_last_modified_by = "kwame_mintah@hotmail.co.uk"
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"
@@ -92,9 +92,9 @@ resource "aws_iam_policy" "sagemaker_notebook_policy" {
   tags = merge(
     local.common_tags,
     {
-      git_commit           = "67510c9c678c24f512fed084ee37c5a9984c4e76"
+      git_commit           = "6a8a81c800dcaefed70b28d8692080306b9ae9fc"
       git_file             = "modules/sagemaker/main.tf"
-      git_last_modified_at = "2023-09-22 16:41:14"
+      git_last_modified_at = "2023-10-03 21:19:32"
       git_last_modified_by = "kwame_mintah@hotmail.co.uk"
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"
@@ -166,9 +166,9 @@ resource "aws_kms_key" "kms" {
   tags = merge(
     local.common_tags,
     {
-      git_commit           = "b83edca78f80ac4ef687fc51341fb3c82b96f70e"
+      git_commit           = "6a8a81c800dcaefed70b28d8692080306b9ae9fc"
       git_file             = "modules/sagemaker/main.tf"
-      git_last_modified_at = "2023-09-21 21:49:17"
+      git_last_modified_at = "2023-10-03 21:19:32"
       git_last_modified_by = "kwame_mintah@hotmail.co.uk"
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"
@@ -243,9 +243,9 @@ resource "aws_security_group" "sagemaker_sg" {
       "Name" = "${var.name}-sagemaker-sg"
     },
     {
-      git_commit           = "e131b949f91e6b10bef6ccdfdee957bae92b01b3"
+      git_commit           = "6a8a81c800dcaefed70b28d8692080306b9ae9fc"
       git_file             = "modules/sagemaker/main.tf"
-      git_last_modified_at = "2023-09-24 20:09:33"
+      git_last_modified_at = "2023-09-24 20:29:25"
       git_last_modified_by = "kwame_mintah@hotmail.co.uk"
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"
@@ -266,9 +266,9 @@ resource "aws_subnet" "sagemaker_subnet" {
       "Tier" = "Private"
     },
     {
-      git_commit           = "e131b949f91e6b10bef6ccdfdee957bae92b01b3"
+      git_commit           = "6a8a81c800dcaefed70b28d8692080306b9ae9fc"
       git_file             = "modules/sagemaker/main.tf"
-      git_last_modified_at = "2023-09-24 20:09:33"
+      git_last_modified_at = "2023-09-24 20:29:25"
       git_last_modified_by = "kwame_mintah@hotmail.co.uk"
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"
@@ -286,9 +286,9 @@ resource "aws_route_table" "route_table" {
       Name = "${var.name}-route-table"
     },
     {
-      git_commit           = "e131b949f91e6b10bef6ccdfdee957bae92b01b3"
+      git_commit           = "6a8a81c800dcaefed70b28d8692080306b9ae9fc"
       git_file             = "modules/sagemaker/main.tf"
-      git_last_modified_at = "2023-09-24 20:09:33"
+      git_last_modified_at = "2023-09-24 20:29:25"
       git_last_modified_by = "kwame_mintah@hotmail.co.uk"
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"

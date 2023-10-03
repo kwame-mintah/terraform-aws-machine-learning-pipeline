@@ -27,7 +27,17 @@ resource "aws_s3_bucket" "s3_bucket" {
 
   tags = merge(
     local.common_tags,
-  )
+    {
+      git_commit           = "6a8a81c800dcaefed70b28d8692080306b9ae9fc"
+      git_file             = "modules/s3_bucket/main.tf"
+      git_last_modified_at = "2023-10-03 21:16:24"
+      git_last_modified_by = "kwame_mintah@hotmail.co.uk"
+      git_modifiers        = "kwame_mintah"
+      git_org              = "kwame-mintah"
+      git_repo             = "terraform-aws-machine-learning-pipeline"
+      yor_name             = "s3_bucket"
+      yor_trace            = "eb025b53-b9ae-476e-be55-0899fee1718f"
+  })
 }
 
 resource "aws_s3_bucket_acl" "s3_bucket_acl" {
@@ -95,7 +105,17 @@ resource "aws_s3_bucket" "logging_bucket" {
 
   tags = merge(
     local.common_tags,
-  )
+    {
+      git_commit           = "6a8a81c800dcaefed70b28d8692080306b9ae9fc"
+      git_file             = "modules/s3_bucket/main.tf"
+      git_last_modified_at = "2023-10-03 21:16:24"
+      git_last_modified_by = "kwame_mintah@hotmail.co.uk"
+      git_modifiers        = "kwame_mintah"
+      git_org              = "kwame-mintah"
+      git_repo             = "terraform-aws-machine-learning-pipeline"
+      yor_name             = "logging_bucket"
+      yor_trace            = "f39c2f79-6eb9-4eba-8def-a369fa39baa8"
+  })
 }
 
 resource "aws_s3_bucket_acl" "logging_bucket_acl" {
@@ -148,7 +168,17 @@ resource "aws_kms_key" "kms" {
 
   tags = merge(
     local.common_tags,
-  )
+    {
+      git_commit           = "6a8a81c800dcaefed70b28d8692080306b9ae9fc"
+      git_file             = "modules/s3_bucket/main.tf"
+      git_last_modified_at = "2023-10-03 21:16:24"
+      git_last_modified_by = "kwame_mintah@hotmail.co.uk"
+      git_modifiers        = "kwame_mintah"
+      git_org              = "kwame-mintah"
+      git_repo             = "terraform-aws-machine-learning-pipeline"
+      yor_name             = "kms"
+      yor_trace            = "3bff6752-29a4-4e82-a6bb-31d926f44010"
+  })
 }
 
 resource "aws_kms_alias" "kms_alias" {

@@ -1,3 +1,7 @@
+# SageMaker
+
+This module creates an SageMaker notebook instance, and KMS key to be used.
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 

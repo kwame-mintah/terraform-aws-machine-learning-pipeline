@@ -43,10 +43,8 @@ resource "aws_sagemaker_notebook_instance" "notebook_instance" {
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"
       git_repo             = "terraform-aws-machine-learning-pipeline"
+      yor_name             = "notebook_instance"
       yor_trace            = "b9fda050-f6ad-4029-ae4d-2cfee651deda"
-    },
-    {
-      yor_name = "notebook_instance"
   })
 }
 
@@ -54,7 +52,7 @@ resource "aws_sagemaker_notebook_instance" "notebook_instance" {
 # Lifecycle configurations
 #---------------------------------------------------
 resource "aws_sagemaker_notebook_instance_lifecycle_configuration" "lifecycle_configuration" {
-  name     = "ml-pipeline"
+  name     = "${var.name}-lifecycle-configuration"
   on_start = base64encode("echo how you doing")
 }
 
@@ -76,10 +74,9 @@ resource "aws_iam_role" "sagemaker_execution_role" {
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"
       git_repo             = "terraform-aws-machine-learning-pipeline"
-      yor_trace            = "42187633-f1cd-4c17-8b0d-e307f8abd446"
-    },
-    {
-      yor_name = "sagemaker_execution_role"
+      yor_name             = "sagemaker_execution_role"
+
+      yor_trace = "42187633-f1cd-4c17-8b0d-e307f8abd446"
   })
 }
 
@@ -102,10 +99,8 @@ resource "aws_iam_policy" "sagemaker_notebook_policy" {
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"
       git_repo             = "terraform-aws-machine-learning-pipeline"
+      yor_name             = "sagemaker_notebook_policy"
       yor_trace            = "9e5cda28-f847-4a49-b780-ffa51c3ab15d"
-    },
-    {
-      yor_name = "sagemaker_notebook_policy"
   })
 }
 
@@ -178,10 +173,8 @@ resource "aws_kms_key" "kms" {
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"
       git_repo             = "terraform-aws-machine-learning-pipeline"
+      yor_name             = "kms"
       yor_trace            = "75d75562-0366-4d8c-912e-5c9730137e23"
-    },
-    {
-      yor_name = "kms"
   })
 }
 

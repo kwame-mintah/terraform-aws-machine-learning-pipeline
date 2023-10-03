@@ -1,7 +1,7 @@
 # Terraform AWS Machine Learning Pipeline
 
 The main purpose of this repository is to create resources needed for Machine Learning within AWS. And to have a better understanding of Machine Learning Operations (MLOps).
-You can find notes for made while learning in my [notes-md](https://github.com/kwame-mintah/notes-md).
+You can find notes made while learning in my [notes-md](https://github.com/kwame-mintah/notes-md).
 
 ## Development
 
@@ -20,9 +20,18 @@ You can find notes for made while learning in my [notes-md](https://github.com/k
 ## Usage
 
 1. Navigate to the environment you would like to deploy,
-2. Initialize the configuration with `aws-vault exec <profile> --no-session terragrunt init`,
-3. Plan your changes with `aws-vault exec <profile> --no-session terragrunt plan` to see what changes will be made,
-4. If you're happy with the changes `aws-vault exec <profile> --no-session terragrunt apply`.
+2. Initialize the configuration with:
+   ```bash
+   aws-vault exec <profile> --no-session terragrunt init
+   ```
+3. Plan your changes with:
+   ```bash
+   aws-vault exec <profile> --no-session terragrunt plan
+   ``` 
+4. If you're happy with the changes 
+   ```bash
+   aws-vault exec <profile> --no-session terragrunt apply
+   ```
 
 > **NOTE**
 >
@@ -75,6 +84,7 @@ Code formatting and documentation for `variables` and `outputs` is generated usi
 
 | Name | Source | Version |
 |------|--------|---------|
+| <a name="module_ml_data"></a> [ml\_data](#module\_ml\_data) | ./modules/s3_bucket | n/a |
 | <a name="module_sagemaker"></a> [sagemaker](#module\_sagemaker) | ./modules/sagemaker | n/a |
 
 ## Resources

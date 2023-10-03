@@ -16,9 +16,9 @@ resource "aws_vpc" "application_vpc" {
       "Name" = "${local.name_prefix}-vpc"
     },
     {
-      git_commit           = "N/A"
+      git_commit           = "5e20a51478800b5c8e03688b3198d7f0de72a190"
       git_file             = "main.tf"
-      git_last_modified_at = "2023-09-24 20:20:24"
+      git_last_modified_at = "2023-09-24 20:29:25"
       git_last_modified_by = "kwame_mintah@hotmail.co.uk"
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"
@@ -34,6 +34,14 @@ module "sagemaker" {
   name                = "${local.name_prefix}-sagemaker"
   vpc_id              = aws_vpc.application_vpc.id
   vpc_ipv4_cidr_block = aws_vpc.application_vpc.cidr_block
+
+  tags = var.tags
+}
+
+module "ml_data" {
+  source                 = "./modules/s3_bucket"
+  name                   = "${local.name_prefix}-data"
+  principles_identifiers = [module.sagemaker.sagemaker_notebook_instance_arn]
 
   tags = var.tags
 }

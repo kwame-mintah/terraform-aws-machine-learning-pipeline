@@ -1,7 +1,6 @@
 # Terraform AWS Machine Learning Pipeline
 
-The main purpose of this repository is to create resources needed for Machine Learning within AWS. And to have a better understanding of Machine Learning Operations (MLOps).
-You can find notes made while learning in my [notes-md](https://github.com/kwame-mintah/notes-md).
+The main purpose of this repository is to create resources needed for Machine Learning within AWS. And to have a better understanding of Machine Learning Operations (MLOps). Notes can be found in my [notes-md](https://github.com/kwame-mintah/notes-md) repository.
 
 ## Development
 

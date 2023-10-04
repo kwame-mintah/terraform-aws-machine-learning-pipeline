@@ -41,7 +41,7 @@ module "sagemaker" {
 module "ml_data" {
   source                 = "./modules/s3_bucket"
   name                   = "${local.name_prefix}-data"
-  principles_identifiers = [module.sagemaker.sagemaker_notebook_instance_arn]
+  principles_identifiers = [module.sagemaker.sagemaker_notebook_execution_role_arn]
 
   tags = var.tags
 }

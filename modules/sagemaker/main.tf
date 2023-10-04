@@ -75,8 +75,7 @@ resource "aws_iam_role" "sagemaker_execution_role" {
       git_org              = "kwame-mintah"
       git_repo             = "terraform-aws-machine-learning-pipeline"
       yor_name             = "sagemaker_execution_role"
-
-      yor_trace = "42187633-f1cd-4c17-8b0d-e307f8abd446"
+      yor_trace            = "42187633-f1cd-4c17-8b0d-e307f8abd446"
   })
 }
 

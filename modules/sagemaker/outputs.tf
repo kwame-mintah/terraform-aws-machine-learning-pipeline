@@ -5,3 +5,12 @@ output "sagemaker_notebook_instance_arn" {
 
 EOF
 }
+
+output "sagemaker_notebook_execution_role_arn" {
+  value       = aws_iam_role.sagemaker_execution_role.arn
+  description = <<-EOF
+    The ARN of the IAM role to be used by the notebook instance which allows 
+    SageMaker to call other services on your behalf.
+
+EOF
+}

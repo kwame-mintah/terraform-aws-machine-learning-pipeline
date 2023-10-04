@@ -43,6 +43,17 @@ resource "aws_s3_bucket" "s3_bucket" {
 resource "aws_s3_bucket_acl" "s3_bucket_acl" {
   bucket = aws_s3_bucket.s3_bucket.id
   acl    = "private"
+
+  depends_on = [aws_s3_bucket_ownership_controls.s3_bucket_acl_ownership]
+}
+
+# Resource to avoid error "AccessControlListNotSupported: The bucket does not allow ACLs"
+resource "aws_s3_bucket_ownership_controls" "s3_bucket_acl_ownership" {
+  bucket = aws_s3_bucket.s3_bucket.id
+
+  rule {
+    object_ownership = "ObjectWriter"
+  }
 }
 
 resource "aws_s3_bucket_public_access_block" "s3_bucket_access_block" {
@@ -69,26 +80,6 @@ resource "aws_s3_bucket_versioning" "s3_bucket_versioning" {
   bucket = aws_s3_bucket.s3_bucket.id
   versioning_configuration {
     status = "Enabled"
-  }
-}
-
-resource "aws_s3_bucket_policy" "s3_access_logging_policy" {
-  bucket = aws_s3_bucket.s3_bucket.id
-  policy = data.aws_iam_policy_document.enable_s3_access_logging.json
-}
-
-data "aws_iam_policy_document" "enable_s3_access_logging" {
-  statement {
-    sid    = "S3ServerAccessLogsPolicy"
-    effect = "Allow"
-    actions = [
-      "s3:PutObject"
-    ]
-    principals {
-      type        = "Service"
-      identifiers = ["logging.s3.amazonaws.com"]
-    }
-    resources = ["arn:aws:s3:::${var.name}-logging-${random_string.rnd_str.result}/*"]
   }
 }
 
@@ -121,6 +112,17 @@ resource "aws_s3_bucket" "logging_bucket" {
 resource "aws_s3_bucket_acl" "logging_bucket_acl" {
   bucket = aws_s3_bucket.logging_bucket.id
   acl    = "log-delivery-write"
+
+  depends_on = [aws_s3_bucket_ownership_controls.logging_bucket_acl_ownership]
+}
+
+# Resource to avoid error "AccessControlListNotSupported: The bucket does not allow ACLs"
+resource "aws_s3_bucket_ownership_controls" "logging_bucket_acl_ownership" {
+  bucket = aws_s3_bucket.logging_bucket.id
+
+  rule {
+    object_ownership = "ObjectWriter"
+  }
 }
 
 resource "aws_s3_bucket_public_access_block" "logging_bucket_access_block" {
@@ -155,6 +157,26 @@ resource "aws_s3_bucket_logging" "logging" {
 
   target_bucket = aws_s3_bucket.logging_bucket.id
   target_prefix = "log/"
+}
+
+resource "aws_s3_bucket_policy" "logging_bucket_policy" {
+  bucket = aws_s3_bucket.logging_bucket.id
+  policy = data.aws_iam_policy_document.enable_s3_access_logging.json
+}
+
+data "aws_iam_policy_document" "enable_s3_access_logging" {
+  statement {
+    sid    = "S3ServerAccessLogsPolicy"
+    effect = "Allow"
+    actions = [
+      "s3:PutObject"
+    ]
+    principals {
+      type        = "Service"
+      identifiers = ["logging.s3.amazonaws.com"]
+    }
+    resources = ["arn:aws:s3:::${var.name}-logging-${random_string.rnd_str.result}/log*"]
+  }
 }
 
 #---------------------------------------------------
@@ -215,6 +237,6 @@ data "aws_iam_policy_document" "kms_policy" {
       type        = "AWS"
       identifiers = var.principles_identifiers
     }
-    resources = ["*"]
+    resources = [aws_s3_bucket.s3_bucket.arn]
   }
 }

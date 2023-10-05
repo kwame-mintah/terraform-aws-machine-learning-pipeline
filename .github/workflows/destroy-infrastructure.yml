@@ -6,6 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       environment:
+        #checkov:skip=CKV_GHA_7:user is unable to provide own input, predefined choices provided in workflow.
         type: choice
         description: Environment to destory
         required: true

@@ -20,7 +20,17 @@ resource "aws_iam_role" "github_action_role" {
 
   tags = merge(
     local.common_tags,
-  )
+    {
+      git_commit           = "ae71c751ae69f68bdfb1e291aa18c91cf2aa3681"
+      git_file             = "modules/github_action/main.tf"
+      git_last_modified_at = "2023-10-05 20:18:59"
+      git_last_modified_by = "kwame_mintah@hotmail.co.uk"
+      git_modifiers        = "kwame_mintah"
+      git_org              = "kwame-mintah"
+      git_repo             = "terraform-aws-machine-learning-pipeline"
+      yor_name             = "github_action_role"
+      yor_trace            = "6801de83-79fc-4397-9917-6c0f71b62eaf"
+  })
 
   depends_on = [aws_iam_openid_connect_provider.github_openid_connect]
 }
@@ -65,7 +75,17 @@ resource "aws_iam_policy" "s3_put_object_policy" {
 
   tags = merge(
     local.common_tags,
-  )
+    {
+      git_commit           = "ae71c751ae69f68bdfb1e291aa18c91cf2aa3681"
+      git_file             = "modules/github_action/main.tf"
+      git_last_modified_at = "2023-10-05 20:18:59"
+      git_last_modified_by = "kwame_mintah@hotmail.co.uk"
+      git_modifiers        = "kwame_mintah"
+      git_org              = "kwame-mintah"
+      git_repo             = "terraform-aws-machine-learning-pipeline"
+      yor_name             = "s3_put_object_policy"
+      yor_trace            = "452da295-340b-4059-994c-6f03d5b7e940"
+  })
 }
 
 data "aws_iam_policy_document" "s3_put_object_policy_document" {
@@ -95,5 +115,15 @@ resource "aws_iam_openid_connect_provider" "github_openid_connect" {
 
   tags = merge(
     local.common_tags,
-  )
+    {
+      git_commit           = "ae71c751ae69f68bdfb1e291aa18c91cf2aa3681"
+      git_file             = "modules/github_action/main.tf"
+      git_last_modified_at = "2023-10-05 20:18:59"
+      git_last_modified_by = "kwame_mintah@hotmail.co.uk"
+      git_modifiers        = "kwame_mintah"
+      git_org              = "kwame-mintah"
+      git_repo             = "terraform-aws-machine-learning-pipeline"
+      yor_name             = "github_openid_connect"
+      yor_trace            = "99478f60-ce69-454b-9604-1bb267782d9b"
+  })
 }

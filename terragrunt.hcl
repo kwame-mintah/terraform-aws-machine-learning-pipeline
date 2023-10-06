@@ -53,3 +53,7 @@ inputs = {
   project_name = "${local.project_name}"
 }
 
+# Retry terragrunt actions due to reasons below.
+retryable_errors = [
+  "(?s).*A conflicting conditional operation is currently in progress against this resource. Please try again*"
+]

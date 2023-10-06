@@ -116,9 +116,9 @@ resource "aws_iam_openid_connect_provider" "github_openid_connect" {
   tags = merge(
     local.common_tags,
     {
-      git_commit           = "ae71c751ae69f68bdfb1e291aa18c91cf2aa3681"
+      git_commit           = "eb52cd392c99d4af36e269e4ad2cfdb237da05d0"
       git_file             = "modules/github_action/main.tf"
-      git_last_modified_at = "2023-10-05 20:18:59"
+      git_last_modified_at = "2023-10-06 19:54:26"
       git_last_modified_by = "kwame_mintah@hotmail.co.uk"
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"

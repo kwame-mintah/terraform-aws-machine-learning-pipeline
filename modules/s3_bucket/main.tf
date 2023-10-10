@@ -232,11 +232,15 @@ data "aws_iam_policy_document" "kms_policy" {
     effect = "Allow"
     actions = [
       "kms:Decrypt",
+      "kms:GenerateDataKey",
     ]
     principals {
       type        = "AWS"
       identifiers = var.principles_identifiers
     }
-    resources = [aws_s3_bucket.s3_bucket.arn]
+    resources = [
+      aws_kms_key.kms.arn,
+      "${aws_s3_bucket.s3_bucket.arn}/*",
+    ]
   }
 }

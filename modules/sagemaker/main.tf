@@ -118,6 +118,18 @@ data "aws_iam_policy_document" "sagemaker_assume_policy" {
 #tfsec:ignore:aws-iam-no-policy-wildcards
 data "aws_iam_policy_document" "sagemaker_notebook_instance_policy" {
   statement {
+    sid = "limitInstanceSize"
+    actions = [
+      "sagemaker:CreateEndpointConfig",
+      "sagemaker:CreateTrainingJob",
+      "sagemaker:CreateHyperParameterTuningJob",
+      "sagemaker:CreateTransformJob"
+    ]
+    effect    = "Allow"
+    resources = ["arn:aws:sagemaker:eu-west-2:${data.aws_caller_identity.current_caller_identity.account_id}:training-job/xgboost*"]
+  }
+
+  statement {
     sid = "AdditionalPolicy"
     actions = [
       "cloudwatch:*",
@@ -150,7 +162,7 @@ data "aws_iam_policy_document" "sagemaker_notebook_instance_policy" {
       "sagemaker:Stop*"
     ]
     effect    = "Allow"
-    resources = [aws_sagemaker_notebook_instance.notebook_instance.arn]
+    resources = var.additional_resources != null ? concat(var.additional_resources, [aws_sagemaker_notebook_instance.notebook_instance.arn, aws_iam_role.sagemaker_execution_role.arn]) : [aws_sagemaker_notebook_instance.notebook_instance.arn, aws_iam_role.sagemaker_execution_role.arn]
   }
 }
 

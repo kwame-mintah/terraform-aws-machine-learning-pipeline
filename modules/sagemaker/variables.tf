@@ -1,3 +1,14 @@
+variable "additional_resources" {
+  description = <<-EOF
+    Additional resources to add to the `sagemaker_notebook_instance_policy` policy
+    for `SageMakerExecutionRole` IAM role.
+
+EOF
+
+  type    = list(string)
+  default = []
+}
+
 variable "name" {
   description = <<-EOF
     The name of the notebook instance (must be unique).

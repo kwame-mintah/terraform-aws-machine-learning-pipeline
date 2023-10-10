@@ -14,6 +14,7 @@ resource "random_string" "resource_code" {
 }
 
 data "aws_caller_identity" "current_caller_identity" {}
+data "aws_region" "current_caller_region" {}
 
 #---------------------------------------------------
 # Notebook Instance
@@ -126,7 +127,7 @@ data "aws_iam_policy_document" "sagemaker_notebook_instance_policy" {
       "sagemaker:CreateTransformJob"
     ]
     effect    = "Allow"
-    resources = ["arn:aws:sagemaker:eu-west-2:${data.aws_caller_identity.current_caller_identity.account_id}:training-job/xgboost*"]
+    resources = ["arn:aws:sagemaker:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:training-job/xgboost*"]
   }
 
   statement {

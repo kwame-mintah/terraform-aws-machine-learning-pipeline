@@ -30,10 +30,11 @@ resource "aws_vpc" "application_vpc" {
 }
 
 module "sagemaker" {
-  source              = "./modules/sagemaker"
-  name                = "${local.name_prefix}-sagemaker"
-  vpc_id              = aws_vpc.application_vpc.id
-  vpc_ipv4_cidr_block = aws_vpc.application_vpc.cidr_block
+  source               = "./modules/sagemaker"
+  name                 = "${local.name_prefix}-sagemaker"
+  vpc_id               = aws_vpc.application_vpc.id
+  vpc_ipv4_cidr_block  = aws_vpc.application_vpc.cidr_block
+  additional_resources = ["${module.ml_data.s3_bucket_arn}/*"]
 
   tags = var.tags
 }

@@ -42,7 +42,7 @@ module "sagemaker" {
 module "ml_data" {
   source                 = "./modules/s3_bucket"
   name                   = "${local.name_prefix}-data"
-  principles_identifiers = [module.sagemaker.sagemaker_notebook_execution_role_arn]
+  principles_identifiers = [module.sagemaker.sagemaker_notebook_execution_role_arn, module.github_action.github_action_role_arn]
 
   tags = var.tags
 }

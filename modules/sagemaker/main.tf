@@ -126,7 +126,12 @@ data "aws_iam_policy_document" "sagemaker_notebook_instance_policy" {
       "sagemaker:CreateHyperParameterTuningJob",
       "sagemaker:CreateTransformJob"
     ]
-    effect    = "Allow"
+    effect = "Allow"
+    condition {
+      test     = "ForAnyValue:StringEquals"
+      variable = "sagemaker:InstanceTypes"
+      values   = ["ml.m4.xlarge", "ml.m4.xlarge", "ml.m4.xlarge"]
+    }
     resources = ["arn:aws:sagemaker:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:training-job/xgboost*"]
   }
 

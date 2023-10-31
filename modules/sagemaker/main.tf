@@ -336,7 +336,17 @@ resource "aws_cloudwatch_log_group" "sagemaker_notebook_instances" {
 
   tags = merge(
     local.common_tags
-  )
+    , {
+      git_commit           = "0dffec79ddd5cd016daba463f0558cd07b555223"
+      git_file             = "modules/sagemaker/main.tf"
+      git_last_modified_at = "2023-10-31 21:36:36"
+      git_last_modified_by = "kwame_mintah@hotmail.co.uk"
+      git_modifiers        = "kwame_mintah"
+      git_org              = "kwame-mintah"
+      git_repo             = "terraform-aws-machine-learning-pipeline"
+      yor_name             = "sagemaker_notebook_instances"
+      yor_trace            = "8627a100-8d39-4c55-92ed-72d9aa296b40"
+  })
 }
 
 resource "aws_cloudwatch_log_group" "sagemaker_training_jobs" {
@@ -346,7 +356,17 @@ resource "aws_cloudwatch_log_group" "sagemaker_training_jobs" {
 
   tags = merge(
     local.common_tags
-  )
+    , {
+      git_commit           = "0dffec79ddd5cd016daba463f0558cd07b555223"
+      git_file             = "modules/sagemaker/main.tf"
+      git_last_modified_at = "2023-10-31 21:36:36"
+      git_last_modified_by = "kwame_mintah@hotmail.co.uk"
+      git_modifiers        = "kwame_mintah"
+      git_org              = "kwame-mintah"
+      git_repo             = "terraform-aws-machine-learning-pipeline"
+      yor_name             = "sagemaker_training_jobs"
+      yor_trace            = "72fae4f5-f38e-4bab-b261-8dc462b95e68"
+  })
 }
 
 resource "aws_cloudwatch_log_group" "sagemaker_endpoints" {
@@ -356,5 +376,15 @@ resource "aws_cloudwatch_log_group" "sagemaker_endpoints" {
 
   tags = merge(
     local.common_tags,
-  )
+    {
+      git_commit           = "0dffec79ddd5cd016daba463f0558cd07b555223"
+      git_file             = "modules/sagemaker/main.tf"
+      git_last_modified_at = "2023-10-31 21:36:36"
+      git_last_modified_by = "kwame_mintah@hotmail.co.uk"
+      git_modifiers        = "kwame_mintah"
+      git_org              = "kwame-mintah"
+      git_repo             = "terraform-aws-machine-learning-pipeline"
+      yor_name             = "sagemaker_endpoints"
+      yor_trace            = "03641519-4501-4690-826b-7fbb3d118018"
+  })
 }

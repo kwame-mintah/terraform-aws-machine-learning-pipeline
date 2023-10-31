@@ -49,6 +49,7 @@ resource "aws_sagemaker_notebook_instance" "notebook_instance" {
   })
 }
 
+
 #---------------------------------------------------
 # Lifecycle configurations
 #---------------------------------------------------
@@ -56,6 +57,7 @@ resource "aws_sagemaker_notebook_instance_lifecycle_configuration" "lifecycle_co
   name     = "${var.name}-lifecycle-configuration"
   on_start = base64encode("echo how you doing")
 }
+
 
 #---------------------------------------------------
 # IAM Role
@@ -122,8 +124,8 @@ data "aws_iam_policy_document" "sagemaker_notebook_instance_policy" {
     sid = "limitInstanceSize"
     actions = [
       "sagemaker:CreateEndpointConfig",
-      "sagemaker:CreateTrainingJob",
       "sagemaker:CreateHyperParameterTuningJob",
+      "sagemaker:CreateTrainingJob",
       "sagemaker:CreateTransformJob"
     ]
     effect = "Allow"
@@ -157,6 +159,7 @@ data "aws_iam_policy_document" "sagemaker_notebook_instance_policy" {
       "sagemaker:CreateModel",
       "sagemaker:CreateModelPackage",
       "sagemaker:CreatePresignedNotebookInstanceUrl",
+      "sagemaker:CreateTrainingJob",
       "sagemaker:Delete*",
       "sagemaker:Describe*",
       "sagemaker:GetSearchSuggestions",
@@ -167,10 +170,12 @@ data "aws_iam_policy_document" "sagemaker_notebook_instance_policy" {
       "sagemaker:StartNotebookInstance",
       "sagemaker:Stop*"
     ]
-    effect    = "Allow"
-    resources = var.additional_resources != null ? concat(var.additional_resources, [aws_sagemaker_notebook_instance.notebook_instance.arn, aws_iam_role.sagemaker_execution_role.arn]) : [aws_sagemaker_notebook_instance.notebook_instance.arn, aws_iam_role.sagemaker_execution_role.arn]
+    effect = "Allow"
+    resources = var.additional_resources != null ? concat(var.additional_resources, [aws_sagemaker_notebook_instance.notebook_instance.arn, aws_iam_role.sagemaker_execution_role.arn,
+    "arn:aws:sagemaker:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:training-job/xgboost*", "${aws_cloudwatch_log_group.sagemaker_training_jobs.arn}:*"]) : [aws_sagemaker_notebook_instance.notebook_instance.arn, aws_iam_role.sagemaker_execution_role.arn]
   }
 }
+
 
 #---------------------------------------------------
 # Key Management Service

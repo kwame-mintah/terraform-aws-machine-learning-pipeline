@@ -319,3 +319,37 @@ resource "aws_route_table_association" "route_table_association" {
   subnet_id      = aws_subnet.sagemaker_subnet.id
   route_table_id = aws_route_table.route_table.id
 }
+
+
+#---------------------------------------------------
+# CloudWatch Log Group
+#---------------------------------------------------
+resource "aws_cloudwatch_log_group" "sagemaker_notebook_instances" {
+  name              = "/aws/sagemaker/NotebookInstances"
+  kms_key_id        = aws_kms_key.kms.arn # Same KMS as SageMaker for S3?
+  retention_in_days = "7"
+
+  tags = merge(
+    local.common_tags
+  )
+}
+
+resource "aws_cloudwatch_log_group" "sagemaker_training_jobs" {
+  name              = "/aws/sagemaker/TrainingJobs"
+  kms_key_id        = aws_kms_key.kms.arn # Same KMS as SageMaker for S3?
+  retention_in_days = "7"
+
+  tags = merge(
+    local.common_tags
+  )
+}
+
+resource "aws_cloudwatch_log_group" "sagemaker_endpoints" {
+  name              = "/aws/sagemaker/Endpoints/linear-learner"
+  kms_key_id        = aws_kms_key.kms.arn # Same KMS as SageMaker for S3?
+  retention_in_days = "7"
+
+  tags = merge(
+    local.common_tags,
+  )
+}

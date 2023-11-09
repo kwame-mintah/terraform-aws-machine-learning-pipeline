@@ -76,9 +76,9 @@ resource "aws_iam_policy" "s3_allow_action_policy" {
   tags = merge(
     local.common_tags,
     {
-      git_commit           = "ae71c751ae69f68bdfb1e291aa18c91cf2aa3681"
+      git_commit           = "cded871efde1611c7aa37bf295b56ef15418515f"
       git_file             = "modules/github_action/main.tf"
-      git_last_modified_at = "2023-10-05 20:18:59"
+      git_last_modified_at = "2023-11-09 22:09:18"
       git_last_modified_by = "kwame_mintah@hotmail.co.uk"
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"

@@ -1,6 +1,7 @@
 # Terraform AWS Machine Learning Pipeline
 
-The main purpose of this repository is to create resources needed for Machine Learning within AWS. And to have a better understanding of Machine Learning Operations (MLOps). Notes can be found in my [notes-md](https://github.com/kwame-mintah/notes-md) repository.
+The main purpose of this repository is to create resources needed for Machine Learning within AWS. And to have a better understanding of Machine Learning Operations (MLOps). Notes can be found in my [notes-md](https://github.com/kwame-mintah/notes-md) repository, additionally data used can be found in [ml-data-copy-to-aws-s3
+](https://github.com/kwame-mintah/ml-data-copy-to-aws-s3).
 
 ## Development
 
@@ -20,14 +21,17 @@ The main purpose of this repository is to create resources needed for Machine Le
 
 1. Navigate to the environment you would like to deploy,
 2. Initialize the configuration with:
+
    ```bash
    aws-vault exec <profile> --no-session terragrunt init
    ```
 3. Plan your changes with:
+
    ```bash
    aws-vault exec <profile> --no-session terragrunt plan
    ``` 
-4. If you're happy with the changes 
+4. If you're happy with the changes:
+
    ```bash
    aws-vault exec <profile> --no-session terragrunt apply
    ```

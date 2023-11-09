@@ -213,6 +213,7 @@ resource "aws_kms_key_policy" "kms_key_policy" {
 #tfsec:ignore:aws-iam-no-policy-wildcards
 data "aws_iam_policy_document" "kms_policy" {
   statement {
+    sid     = "Enable IAM User Permissions"
     effect  = "Allow"
     actions = ["kms:*"]
     #checkov:skip=CKV_AWS_356:root account needs access to resolve error, the new key policy will not allow you to update the key policy in the future.
@@ -238,6 +239,42 @@ data "aws_iam_policy_document" "kms_policy" {
       identifiers = ["arn:aws:iam::${data.aws_caller_identity.current_caller_identity.account_id}:role/SageMakerExecutionRole"]
     }
     resources = [aws_sagemaker_notebook_instance.notebook_instance.arn]
+  }
+
+  statement {
+    sid    = "Allow logs to (encryp,decryp)t messages"
+    effect = "Allow"
+
+    actions = [
+      "kms:Encrypt*",
+      "kms:Decrypt*",
+      "kms:ReEncrypt*",
+      "kms:GenerateDataKey*",
+      "kms:Describe*"
+    ]
+    resources = ["*"]
+
+    principals {
+      identifiers = ["logs.${data.aws_region.current_caller_region.name}.amazonaws.com"]
+      type        = "Service"
+    }
+
+    condition {
+      test     = "ArnEquals"
+      variable = "kms:EncryptionContext:aws:logs:arn"
+      values = [
+        "arn:aws:logs:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:log-group:/aws/sagemaker/NotebookInstances",
+        "arn:aws:logs:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:log-group:/aws/sagemaker/TrainingJobs",
+        "arn:aws:logs:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:log-group:/aws/sagemaker/Endpoints/linear-learner"
+      ]
+    }
+
+    # Potentially useful, will re-consider at a later date.
+    # condition {
+    #   test     = "StringEquals"
+    #   variable = "kms:ViaService"
+    #   values   = ["logs.${data.aws_region.current_caller_region.name}.amazonaws.com"]
+    # }
   }
 }
 
@@ -331,7 +368,7 @@ resource "aws_route_table_association" "route_table_association" {
 #---------------------------------------------------
 resource "aws_cloudwatch_log_group" "sagemaker_notebook_instances" {
   name              = "/aws/sagemaker/NotebookInstances"
-  kms_key_id        = aws_kms_key.kms.arn # Same KMS as SageMaker for S3?
+  kms_key_id        = aws_kms_key.kms.arn # Same KMS as SageMaker?
   retention_in_days = "7"
 
   tags = merge(
@@ -351,7 +388,7 @@ resource "aws_cloudwatch_log_group" "sagemaker_notebook_instances" {
 
 resource "aws_cloudwatch_log_group" "sagemaker_training_jobs" {
   name              = "/aws/sagemaker/TrainingJobs"
-  kms_key_id        = aws_kms_key.kms.arn # Same KMS as SageMaker for S3?
+  kms_key_id        = aws_kms_key.kms.arn # Same KMS as SageMaker?
   retention_in_days = "7"
 
   tags = merge(
@@ -371,7 +408,7 @@ resource "aws_cloudwatch_log_group" "sagemaker_training_jobs" {
 
 resource "aws_cloudwatch_log_group" "sagemaker_endpoints" {
   name              = "/aws/sagemaker/Endpoints/linear-learner"
-  kms_key_id        = aws_kms_key.kms.arn # Same KMS as SageMaker for S3?
+  kms_key_id        = aws_kms_key.kms.arn # Same KMS as SageMaker?
   retention_in_days = "7"
 
   tags = merge(

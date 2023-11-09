@@ -65,13 +65,13 @@ data "aws_iam_policy_document" "oidc_assume_policy" {
 resource "aws_iam_role_policy_attachment" "s3_bucket_inline_policy" {
   count      = local.create_inline_policy ? 1 : 0
   role       = aws_iam_role.github_action_role.name
-  policy_arn = aws_iam_policy.s3_put_object_policy[0].arn
+  policy_arn = aws_iam_policy.s3_allow_action_policy[0].arn
 }
 
-resource "aws_iam_policy" "s3_put_object_policy" {
+resource "aws_iam_policy" "s3_allow_action_policy" {
   count  = local.create_inline_policy ? 1 : 0
-  name   = "s3-github-put-object"
-  policy = data.aws_iam_policy_document.s3_put_object_policy_document[0].json
+  name   = "s3-github-allow-actions"
+  policy = data.aws_iam_policy_document.s3_allow_action_policy_document[0].json
 
   tags = merge(
     local.common_tags,
@@ -83,17 +83,21 @@ resource "aws_iam_policy" "s3_put_object_policy" {
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"
       git_repo             = "terraform-aws-machine-learning-pipeline"
-      yor_name             = "s3_put_object_policy"
+      yor_name             = "s3_allow_action_policy"
       yor_trace            = "452da295-340b-4059-994c-6f03d5b7e940"
   })
 }
 
-data "aws_iam_policy_document" "s3_put_object_policy_document" {
+data "aws_iam_policy_document" "s3_allow_action_policy_document" {
   count = local.create_inline_policy ? 1 : 0
   statement {
-    sid = "AWSGitHubS3PutObject"
+    sid = "AWSGitHubS3AllowActions"
     actions = [
+      "s3:DeleteObject",
+      "s3:DeleteObjectVersion",
       "s3:PutObject",
+      "s3:ListBucketVersions",
+      "s3:ListBucket"
     ]
     effect    = "Allow"
     resources = var.s3_bucket

@@ -4,7 +4,7 @@ output "availability_zones" {
 
 EOF
 
-  value = data.aws_availability_zones.avaliabile_zones.names
+  value = data.aws_availability_zones.available_zones.names
 }
 
 output "current_caller_identity" {

@@ -47,12 +47,11 @@ resource "aws_s3_bucket_acl" "s3_bucket_acl" {
   depends_on = [aws_s3_bucket_ownership_controls.s3_bucket_acl_ownership]
 }
 
-# Resource to avoid error "AccessControlListNotSupported: The bucket does not allow ACLs"
 resource "aws_s3_bucket_ownership_controls" "s3_bucket_acl_ownership" {
   bucket = aws_s3_bucket.s3_bucket.id
 
   rule {
-    object_ownership = "ObjectWriter"
+    object_ownership = "BucketOwnerEnforced"
   }
 }
 
@@ -116,12 +115,11 @@ resource "aws_s3_bucket_acl" "logging_bucket_acl" {
   depends_on = [aws_s3_bucket_ownership_controls.logging_bucket_acl_ownership]
 }
 
-# Resource to avoid error "AccessControlListNotSupported: The bucket does not allow ACLs"
 resource "aws_s3_bucket_ownership_controls" "logging_bucket_acl_ownership" {
   bucket = aws_s3_bucket.logging_bucket.id
 
   rule {
-    object_ownership = "ObjectWriter"
+    object_ownership = "BucketOwnerEnforced"
   }
 }
 

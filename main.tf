@@ -5,6 +5,10 @@ locals {
   name_prefix = "${var.project_name}-${var.aws_region}-${var.env_prefix}"
 }
 
+#---------------------------------------------------
+# Application virtual private network (VPC)
+#---------------------------------------------------
+
 resource "aws_vpc" "application_vpc" {
   cidr_block           = var.application_vpc_ipv4_cidr_block
   enable_dns_hostnames = true
@@ -28,6 +32,17 @@ resource "aws_vpc" "application_vpc" {
     }
   )
 }
+
+resource "aws_default_security_group" "default_security_group" {
+  vpc_id  = aws_vpc.application_vpc.id
+  ingress = []
+  egress  = []
+
+  tags = merge(
+    var.tags,
+  )
+}
+
 
 module "sagemaker" {
   source               = "./modules/sagemaker"

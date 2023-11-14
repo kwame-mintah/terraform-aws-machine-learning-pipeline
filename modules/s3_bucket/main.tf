@@ -96,9 +96,9 @@ resource "aws_s3_bucket" "logging_bucket" {
   tags = merge(
     local.common_tags,
     {
-      git_commit           = "6a8a81c800dcaefed70b28d8692080306b9ae9fc"
+      git_commit           = "50099d4f09f2eb9b871f799b543875169445851c"
       git_file             = "modules/s3_bucket/main.tf"
-      git_last_modified_at = "2023-10-03 21:16:24"
+      git_last_modified_at = "2023-10-03 21:31:23"
       git_last_modified_by = "kwame_mintah@hotmail.co.uk"
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"
@@ -189,9 +189,9 @@ resource "aws_kms_key" "kms" {
   tags = merge(
     local.common_tags,
     {
-      git_commit           = "6a8a81c800dcaefed70b28d8692080306b9ae9fc"
+      git_commit           = "50099d4f09f2eb9b871f799b543875169445851c"
       git_file             = "modules/s3_bucket/main.tf"
-      git_last_modified_at = "2023-10-03 21:16:24"
+      git_last_modified_at = "2023-10-03 21:31:23"
       git_last_modified_by = "kwame_mintah@hotmail.co.uk"
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"

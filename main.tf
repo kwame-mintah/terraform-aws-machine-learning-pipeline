@@ -40,7 +40,17 @@ resource "aws_default_security_group" "default_security_group" {
 
   tags = merge(
     var.tags,
-  )
+    {
+      git_commit           = "50099d4f09f2eb9b871f799b543875169445851c"
+      git_file             = "main.tf"
+      git_last_modified_at = "2023-11-14 18:35:59"
+      git_last_modified_by = "kwame_mintah@hotmail.co.uk"
+      git_modifiers        = "kwame_mintah"
+      git_org              = "kwame-mintah"
+      git_repo             = "terraform-aws-machine-learning-pipeline"
+      yor_name             = "default_security_group"
+      yor_trace            = "e0216982-fa56-42db-abc6-732fb7a74c6f"
+  })
 }
 
 

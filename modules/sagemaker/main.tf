@@ -125,6 +125,7 @@ data "aws_iam_policy_document" "sagemaker_notebook_instance_policy" {
     actions = [
       "sagemaker:CreateEndpointConfig",
       "sagemaker:CreateHyperParameterTuningJob",
+      "sagemaker:CreateProcessingJob",
       "sagemaker:CreateTrainingJob",
       "sagemaker:CreateTransformJob"
     ]
@@ -134,7 +135,11 @@ data "aws_iam_policy_document" "sagemaker_notebook_instance_policy" {
       variable = "sagemaker:InstanceTypes"
       values   = ["ml.m4.xlarge", "ml.m4.xlarge", "ml.m4.xlarge"]
     }
-    resources = ["arn:aws:sagemaker:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:training-job/xgboost*"]
+    resources = [
+      "arn:aws:sagemaker:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:endpoint-config/xgboost*",
+      "arn:aws:sagemaker:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:processing-job/*",
+      "arn:aws:sagemaker:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:training-job/xgboost*",
+    ]
   }
 
   statement {
@@ -171,8 +176,15 @@ data "aws_iam_policy_document" "sagemaker_notebook_instance_policy" {
       "sagemaker:Stop*"
     ]
     effect = "Allow"
-    resources = var.additional_resources != null ? concat(var.additional_resources, [aws_sagemaker_notebook_instance.notebook_instance.arn, aws_iam_role.sagemaker_execution_role.arn,
-    "arn:aws:sagemaker:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:training-job/xgboost*", "${aws_cloudwatch_log_group.sagemaker_training_jobs.arn}:*"]) : [aws_sagemaker_notebook_instance.notebook_instance.arn, aws_iam_role.sagemaker_execution_role.arn]
+    resources = var.additional_resources != null ? concat(var.additional_resources, [
+      aws_sagemaker_notebook_instance.notebook_instance.arn,
+      aws_iam_role.sagemaker_execution_role.arn,
+      "arn:aws:sagemaker:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:endpoint-config/xgboost*",
+      "arn:aws:sagemaker:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:endpoint/xgboost*",
+      "arn:aws:sagemaker:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:model/xgboost*",
+      "arn:aws:sagemaker:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:training-job/*",
+      "${aws_cloudwatch_log_group.sagemaker_training_jobs.arn}:*",
+    ]) : [aws_sagemaker_notebook_instance.notebook_instance.arn, aws_iam_role.sagemaker_execution_role.arn]
   }
 }
 
@@ -424,4 +436,24 @@ resource "aws_cloudwatch_log_group" "sagemaker_endpoints" {
       yor_name             = "sagemaker_endpoints"
       yor_trace            = "03641519-4501-4690-826b-7fbb3d118018"
   })
+}
+
+resource "aws_cloudwatch_log_group" "processing_jobs" {
+  name              = "/aws/sagemaker/ProcessingJobs"
+  kms_key_id        = aws_kms_key.kms.arn # Same KMS as SageMaker?
+  retention_in_days = "7"
+
+  tags = merge(
+    local.common_tags,
+  )
+}
+
+resource "aws_cloudwatch_log_group" "endpoints" {
+  name              = "/aws/sagemaker/Endpoints"
+  kms_key_id        = aws_kms_key.kms.arn # Same KMS as SageMaker?
+  retention_in_days = "7"
+
+  tags = merge(
+    local.common_tags,
+  )
 }

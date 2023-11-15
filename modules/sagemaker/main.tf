@@ -445,7 +445,17 @@ resource "aws_cloudwatch_log_group" "processing_jobs" {
 
   tags = merge(
     local.common_tags,
-  )
+    {
+      git_commit           = "ea4f3f3011bc91d8e746cdfc7d4cccbae01f0625"
+      git_file             = "modules/sagemaker/main.tf"
+      git_last_modified_at = "2023-11-15 20:39:57"
+      git_last_modified_by = "kwame_mintah@hotmail.co.uk"
+      git_modifiers        = "kwame_mintah"
+      git_org              = "kwame-mintah"
+      git_repo             = "terraform-aws-machine-learning-pipeline"
+      yor_name             = "processing_jobs"
+      yor_trace            = "74413d7b-7710-4622-b46a-1c6df1377c38"
+  })
 }
 
 resource "aws_cloudwatch_log_group" "endpoints" {
@@ -455,5 +465,15 @@ resource "aws_cloudwatch_log_group" "endpoints" {
 
   tags = merge(
     local.common_tags,
-  )
+    {
+      git_commit           = "ea4f3f3011bc91d8e746cdfc7d4cccbae01f0625"
+      git_file             = "modules/sagemaker/main.tf"
+      git_last_modified_at = "2023-11-15 20:39:57"
+      git_last_modified_by = "kwame_mintah@hotmail.co.uk"
+      git_modifiers        = "kwame_mintah"
+      git_org              = "kwame-mintah"
+      git_repo             = "terraform-aws-machine-learning-pipeline"
+      yor_name             = "endpoints"
+      yor_trace            = "ddb05177-7cbf-49ba-a6ce-ba0c70906746"
+  })
 }

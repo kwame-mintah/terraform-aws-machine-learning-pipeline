@@ -136,6 +136,7 @@ data "aws_iam_policy_document" "sagemaker_notebook_instance_policy" {
       values   = ["ml.m4.xlarge", "ml.m4.xlarge", "ml.m4.xlarge"]
     }
     resources = [
+      "arn:aws:sagemaker:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:endpoint-config/tensorflow*",
       "arn:aws:sagemaker:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:endpoint-config/xgboost*",
       "arn:aws:sagemaker:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:processing-job/*",
       "arn:aws:sagemaker:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:training-job/xgboost*",
@@ -157,6 +158,7 @@ data "aws_iam_policy_document" "sagemaker_notebook_instance_policy" {
       "s3:CreateBucket",
       "s3:DeleteObject",
       "s3:GetObject",
+      "s3:GetBucketLocation",
       "s3:ListBucket",
       "s3:PutObject",
       "sagemaker:AddTags",
@@ -275,9 +277,12 @@ data "aws_iam_policy_document" "kms_policy" {
       test     = "ArnEquals"
       variable = "kms:EncryptionContext:aws:logs:arn"
       values = [
+        "arn:aws:logs:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:log-group:/aws/sagemaker/Endpoints",
+        "arn:aws:logs:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:log-group:/aws/sagemaker/Endpoints/linear-learner",
         "arn:aws:logs:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:log-group:/aws/sagemaker/NotebookInstances",
+        "arn:aws:logs:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:log-group:/aws/sagemaker/ProcessingJobs",
         "arn:aws:logs:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:log-group:/aws/sagemaker/TrainingJobs",
-        "arn:aws:logs:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:log-group:/aws/sagemaker/Endpoints/linear-learner"
+
       ]
     }
 

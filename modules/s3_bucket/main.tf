@@ -79,6 +79,9 @@ resource "aws_s3_bucket_versioning" "s3_bucket_versioning" {
 # Logging S3 Bucket
 #---------------------------------------------------
 
+# Best practice is to have a separate AWS account for your logging/monitoring needs. 
+# Create a new bucket in that secondary account, and grant it write access only from S3 bucket logging.
+#tfsec:ignore:aws-s3-enable-bucket-logging
 resource "aws_s3_bucket" "logging_bucket" {
   bucket = "${var.name}-logging-${random_string.rnd_str.result}"
   #checkov:skip=CKV_AWS_144:no need to copy objects to another bucket in a different region OOS.
@@ -99,13 +102,6 @@ resource "aws_s3_bucket" "logging_bucket" {
       yor_name             = "logging_bucket"
       yor_trace            = "f39c2f79-6eb9-4eba-8def-a369fa39baa8"
   })
-}
-
-resource "aws_s3_bucket_acl" "logging_bucket_acl" {
-  bucket = aws_s3_bucket.logging_bucket.id
-  acl    = "log-delivery-write"
-
-  depends_on = [aws_s3_bucket_ownership_controls.logging_bucket_acl_ownership]
 }
 
 resource "aws_s3_bucket_ownership_controls" "logging_bucket_acl_ownership" {

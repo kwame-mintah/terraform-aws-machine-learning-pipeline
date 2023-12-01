@@ -55,5 +55,6 @@ inputs = {
 
 # Retry terragrunt actions due to reasons below.
 retryable_errors = [
-  "(?s).*A conflicting conditional operation is currently in progress against this resource. Please try again*"
+  "(?s).*A conflicting conditional operation is currently in progress against this resource. Please try again*",
+  "(?s).*The specified KMS key does not exist or is not allowed to be used with Arn 'arn:aws:logs:eu-west-2:*"
 ]

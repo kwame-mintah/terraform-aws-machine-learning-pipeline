@@ -88,6 +88,7 @@ Code formatting and documentation for `variables` and `outputs` is generated usi
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_github_action"></a> [github\_action](#module\_github\_action) | ./modules/github_action | n/a |
+| <a name="module_lambda_data_preprocessing_ecr"></a> [lambda\_data\_preprocessing\_ecr](#module\_lambda\_data\_preprocessing\_ecr) | ./modules/ecr | n/a |
 | <a name="module_ml_data"></a> [ml\_data](#module\_ml\_data) | ./modules/s3_bucket | n/a |
 | <a name="module_sagemaker"></a> [sagemaker](#module\_sagemaker) | ./modules/sagemaker | n/a |
 

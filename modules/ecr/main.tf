@@ -29,8 +29,15 @@ resource "aws_ecr_repository" "repository" {
   tags = merge(
     local.common_tags,
     {
-      yor_name  = "repository"
-      yor_trace = "d8715cb3-355b-401c-8f67-4488c4dde64e"
+      yor_name             = "repository"
+      yor_trace            = "d8715cb3-355b-401c-8f67-4488c4dde64e"
+      git_commit           = "8ec57e5e38919d8136fce817fc851beec847024d"
+      git_file             = "modules/ecr/main.tf"
+      git_last_modified_at = "2023-12-03 20:45:20"
+      git_last_modified_by = "kwame_mintah@hotmail.co.uk"
+      git_modifiers        = "kwame_mintah"
+      git_org              = "kwame-mintah"
+      git_repo             = "terraform-aws-machine-learning-pipeline"
   })
 }
 
@@ -45,8 +52,15 @@ resource "aws_kms_key" "kms" {
   tags = merge(
     local.common_tags,
     {
-      yor_name  = "kms"
-      yor_trace = "3a376bf3-bed1-4be6-99c4-f19c97809620"
+      yor_name             = "kms"
+      yor_trace            = "3a376bf3-bed1-4be6-99c4-f19c97809620"
+      git_commit           = "8ec57e5e38919d8136fce817fc851beec847024d"
+      git_file             = "modules/ecr/main.tf"
+      git_last_modified_at = "2023-12-03 20:45:20"
+      git_last_modified_by = "kwame_mintah@hotmail.co.uk"
+      git_modifiers        = "kwame_mintah"
+      git_org              = "kwame-mintah"
+      git_repo             = "terraform-aws-machine-learning-pipeline"
   })
 }
 

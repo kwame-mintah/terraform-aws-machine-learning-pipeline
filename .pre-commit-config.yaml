@@ -19,6 +19,8 @@ repos:
   hooks:
     - id: terraform_tfsec
     - id: terraform_docs
+      args:
+      - --args=--config=.terraform-docs.yml
     - id: terraform_checkov
     - id: terraform_tflint
       args:

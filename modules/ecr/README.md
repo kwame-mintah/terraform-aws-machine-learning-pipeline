@@ -2,6 +2,7 @@
 
 A module to create ECR repositories
 
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK --->
 ## Requirements
 
 | Name | Version |
@@ -45,3 +46,4 @@ No modules.
 |------|-------------|
 | <a name="output_ecr_repository_arn"></a> [ecr\_repository\_arn](#output\_ecr\_repository\_arn) | Full ARN of the repository. |
 | <a name="output_ecr_repository_url"></a> [ecr\_repository\_url](#output\_ecr\_repository\_url) | The URL of the repository. |
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK --->

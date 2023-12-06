@@ -3,7 +3,7 @@
 A module to create a IAM role and configure a IAM identify provider for GitHub. This is then used in conjunction with the GitHub action [configure-aws-credentials
 ](https://github.com/aws-actions/configure-aws-credentials).
 
-<!-- BEGIN_TF_DOCS -->
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK --->
 ## Requirements
 
 | Name | Version |
@@ -26,12 +26,12 @@ No modules.
 | Name | Type |
 |------|------|
 | [aws_iam_openid_connect_provider.github_openid_connect](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_openid_connect_provider) | resource |
-| [aws_iam_policy.s3_put_object_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
+| [aws_iam_policy.s3_allow_action_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
 | [aws_iam_role.github_action_role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
 | [aws_iam_role_policy_attachment.s3_bucket_inline_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource |
 | [aws_caller_identity.current_caller_identity](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
 | [aws_iam_policy_document.oidc_assume_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
-| [aws_iam_policy_document.s3_put_object_policy_document](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
+| [aws_iam_policy_document.s3_allow_action_policy_document](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 
 ## Inputs
 
@@ -47,6 +47,6 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_github_action_role_arn"></a> [github\_action\_role\_arn](#output\_github\_action\_role\_arn) | The ARN of the AWSGitHub role. |
+| <a name="output_github_action_role_arn"></a> [github\_action\_role\_arn](#output\_github\_action\_role\_arn) | The ARN of the AWSGitHubAction role. |
 | <a name="output_github_openid_connect_arn"></a> [github\_openid\_connect\_arn](#output\_github\_openid\_connect\_arn) | The ARN assigned by AWS for this provider. |
-<!-- END_TF_DOCS -->
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK --->

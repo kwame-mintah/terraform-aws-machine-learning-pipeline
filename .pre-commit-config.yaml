@@ -1,6 +1,6 @@
 repos:
 - repo: https://github.com/bridgecrewio/yor
-  rev: 0.1.185
+  rev: 0.1.187
   hooks:
     - id: yor
       name: yor
@@ -15,9 +15,11 @@ repos:
     - id: terraform-validate
     - id: terraform-fmt
 - repo: https://github.com/antonbabenko/pre-commit-terraform
-  rev: v1.83.6 # Get the latest from: https://github.com/antonbabenko/pre-commit-terraform/releases
+  rev: v1.86.0 # Get the latest from: https://github.com/antonbabenko/pre-commit-terraform/releases
   hooks:
-    - id: terraform_tfsec
+    - id: terraform_trivy
+      args: 
+      - '--args=--skip-dirs=**/.terragrunt-cache'
     - id: terraform_docs
       args:
       - --args=--config=.terraform-docs.yml

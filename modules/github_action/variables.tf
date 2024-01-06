@@ -8,25 +8,14 @@ EOF
   default = {}
 }
 
-variable "github_repository" {
+variable "github_repositories" {
   description = <<-EOF
-    The GitHub repository using the [configure-aws-credentials](https://github.com/aws-actions/configure-aws-credentials/)
+    The GitHub repositories using the [configure-aws-credentials](https://github.com/aws-actions/configure-aws-credentials/)
     action.
     
 EOF
 
-  type = string
-}
-
-variable "github_branch" {
-  description = <<-EOF
-    The GitHub repository branch that is allowed to run the [configure-aws-credentials](https://github.com/aws-actions/configure-aws-credentials/)
-    action.
-    
-EOF
-
-  type    = string
-  default = "refs/heads/main"
+  type = list(string)
 }
 
 variable "github_thumbprints" {

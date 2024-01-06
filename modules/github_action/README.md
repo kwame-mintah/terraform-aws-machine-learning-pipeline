@@ -37,8 +37,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_github_branch"></a> [github\_branch](#input\_github\_branch) | The GitHub repository branch that is allowed to run the [configure-aws-credentials](https://github.com/aws-actions/configure-aws-credentials/)<br>action. | `string` | `"refs/heads/main"` | no |
-| <a name="input_github_repository"></a> [github\_repository](#input\_github\_repository) | The GitHub repository using the [configure-aws-credentials](https://github.com/aws-actions/configure-aws-credentials/)<br>action. | `string` | n/a | yes |
+| <a name="input_github_repositories"></a> [github\_repositories](#input\_github\_repositories) | The GitHub repositories using the [configure-aws-credentials](https://github.com/aws-actions/configure-aws-credentials/)<br>action. | `list(string)` | n/a | yes |
 | <a name="input_github_thumbprints"></a> [github\_thumbprints](#input\_github\_thumbprints) | The GitHub server certificate thumbprint(s). | `list(string)` | n/a | yes |
 | <a name="input_s3_bucket"></a> [s3\_bucket](#input\_s3\_bucket) | The S3 Bucket that the GitHub action will be uploading buckets to. | `list(string)` | `[]` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags to be added to resources created. | `map(string)` | `{}` | no |

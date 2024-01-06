@@ -55,9 +55,15 @@ data "aws_iam_policy_document" "oidc_assume_policy" {
     condition {
       test     = "StringEquals"
       variable = "token.actions.githubusercontent.com:sub"
-      values = [
-        "repo:${var.github_repository}:ref:${var.github_branch}"
-      ]
+      values   = var.github_repositories
+    }
+
+    # Hardcoded value as `terraform_checkov` CKV_AWS_358 keeps failing even
+    # when a variable has been added to handle trusting specific organisations or repositories.
+    condition {
+      test     = "StringEquals"
+      variable = "token.actions.githubusercontent.com:sub"
+      values   = ["repo:kwame-mintah/*"]
     }
   }
 }

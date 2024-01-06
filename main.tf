@@ -22,9 +22,9 @@ resource "aws_vpc" "application_vpc" {
       "Name" = "${local.name_prefix}-vpc"
     },
     {
-      git_commit           = "5e20a51478800b5c8e03688b3198d7f0de72a190"
+      git_commit           = "N/A"
       git_file             = "main.tf"
-      git_last_modified_at = "2023-09-24 20:29:25"
+      git_last_modified_at = "2024-01-06 20:05:20"
       git_last_modified_by = "kwame_mintah@hotmail.co.uk"
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"
@@ -69,6 +69,14 @@ module "sagemaker" {
 module "ml_data" {
   source                 = "./modules/s3_bucket"
   name                   = "${local.name_prefix}-data"
+  principles_identifiers = [module.sagemaker.sagemaker_notebook_execution_role_arn, module.github_action.github_action_role_arn]
+
+  tags = var.tags
+}
+
+module "automl_data" {
+  source                 = "./modules/s3_bucket"
+  name                   = "${local.name_prefix}-automl-data"
   principles_identifiers = [module.sagemaker.sagemaker_notebook_execution_role_arn, module.github_action.github_action_role_arn]
 
   tags = var.tags

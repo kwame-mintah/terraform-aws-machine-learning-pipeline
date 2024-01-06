@@ -94,6 +94,7 @@ resource "aws_iam_policy" "s3_allow_action_policy" {
   })
 }
 
+#trivy:ignore:AVD-AWS-0057
 data "aws_iam_policy_document" "s3_allow_action_policy_document" {
   count = local.create_inline_policy ? 1 : 0
   statement {

@@ -81,7 +81,7 @@ resource "aws_s3_bucket_versioning" "s3_bucket_versioning" {
 
 # Best practice is to have a separate AWS account for your logging/monitoring needs. 
 # Create a new bucket in that secondary account, and grant it write access only from S3 bucket logging.
-#tfsec:ignore:aws-s3-enable-bucket-logging
+#trivy:ignore:AVD-AWS-0089
 resource "aws_s3_bucket" "logging_bucket" {
   bucket = "${var.name}-logging-${random_string.rnd_str.result}"
   #checkov:skip=CKV_AWS_144:no need to copy objects to another bucket in a different region OOS.
@@ -200,7 +200,6 @@ resource "aws_kms_key_policy" "kms_key_policy" {
   policy = data.aws_iam_policy_document.kms_policy.json
 }
 
-#tfsec:ignore:aws-iam-no-policy-wildcards
 data "aws_iam_policy_document" "kms_policy" {
   statement {
     effect  = "Allow"

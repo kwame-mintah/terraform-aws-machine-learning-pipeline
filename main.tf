@@ -9,7 +9,9 @@ locals {
 # Application virtual private network (VPC)
 #---------------------------------------------------
 
+#trivy:ignore:AVD-AWS-0178
 resource "aws_vpc" "application_vpc" {
+  #checkov:skip=CKV2_AWS_11:out of scope for this demostration.
   cidr_block           = var.application_vpc_ipv4_cidr_block
   enable_dns_hostnames = true
   enable_dns_support   = true

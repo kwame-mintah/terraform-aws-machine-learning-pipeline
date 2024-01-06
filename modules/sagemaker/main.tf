@@ -118,7 +118,8 @@ data "aws_iam_policy_document" "sagemaker_assume_policy" {
 }
 
 # TODO: Policy matches AWS Lab role, could be less permissive (?)
-#tfsec:ignore:aws-iam-no-policy-wildcards
+#trivy:ignore:AVD-AWS-0057
+#trivy:ignore:AVD-AWS-0342
 data "aws_iam_policy_document" "sagemaker_notebook_instance_policy" {
   statement {
     sid = "limitInstanceSize"
@@ -146,7 +147,8 @@ data "aws_iam_policy_document" "sagemaker_notebook_instance_policy" {
   statement {
     sid = "AdditionalPolicy"
     actions = [
-      "cloudwatch:*",
+      "cloudwatch:GetMetricStatistics",
+      "cloudwatch:ListMetrics",
       "elasticfilesystem:DescribeFileSystems",
       "elasticfilesystem:DescribeMountTargets",
       "fsx:DescribeFileSystems",
@@ -154,11 +156,13 @@ data "aws_iam_policy_document" "sagemaker_notebook_instance_policy" {
       "iam:PassRole",
       "kms:DescribeKey",
       "kms:ListAliases",
-      "logs:*",
+      "logs:CreateLogGroup",
+      "logs:CreateLogStream",
+      "logs:PutLogEvents",
       "s3:CreateBucket",
       "s3:DeleteObject",
-      "s3:GetObject",
       "s3:GetBucketLocation",
+      "s3:GetObject",
       "s3:ListBucket",
       "s3:PutObject",
       "sagemaker:AddTags",
@@ -224,7 +228,6 @@ resource "aws_kms_key_policy" "kms_key_policy" {
   policy = data.aws_iam_policy_document.kms_policy.json
 }
 
-#tfsec:ignore:aws-iam-no-policy-wildcards
 data "aws_iam_policy_document" "kms_policy" {
   statement {
     sid     = "Enable IAM User Permissions"
@@ -299,12 +302,12 @@ data "aws_iam_policy_document" "kms_policy" {
 #---------------------------------------------------
 # Networking
 #---------------------------------------------------
-#tfsec:ignore:aws-vpc-no-public-egress-sgr
 resource "aws_security_group" "sagemaker_sg" {
   name        = "${var.name}-sagemaker-sg"
   description = "Allow access to SageMaker"
   vpc_id      = var.vpc_id
 
+  #trivy:ignore:AVD-AWS-0104
   egress {
     description = "All traffic"
     protocol    = "-1"

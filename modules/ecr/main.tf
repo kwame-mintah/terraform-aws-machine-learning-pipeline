@@ -74,7 +74,6 @@ resource "aws_kms_key_policy" "kms_key_policy" {
   policy = data.aws_iam_policy_document.kms_policy.json
 }
 
-#tfsec:ignore:aws-iam-no-policy-wildcards
 data "aws_iam_policy_document" "kms_policy" {
   statement {
     effect  = "Allow"

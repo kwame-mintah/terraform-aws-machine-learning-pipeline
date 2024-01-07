@@ -41,3 +41,13 @@ EOF
   default = []
 }
 
+variable "ecr_repository" {
+  description = <<-EOF
+    The Elastic Container Registry (ECR) that the GitHub action will be uploading docker images to.
+    
+EOF
+
+  type    = list(string)
+  default = []
+}
+

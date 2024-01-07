@@ -5,7 +5,8 @@ locals {
   common_tags = merge(
     var.tags
   )
-  create_inline_policy = (length(var.s3_bucket) > 0)
+  create_inline_s3_policy  = (length(var.s3_bucket) > 0)
+  create_inline_ecr_policy = (length(var.ecr_repository) > 0)
 }
 
 data "aws_caller_identity" "current_caller_identity" {}
@@ -57,26 +58,22 @@ data "aws_iam_policy_document" "oidc_assume_policy" {
       variable = "token.actions.githubusercontent.com:sub"
       values   = var.github_repositories
     }
-
-    # Hardcoded value as `terraform_checkov` CKV_AWS_358 keeps failing even
-    # when a variable has been added to handle trusting specific organisations or repositories.
-    condition {
-      test     = "StringEquals"
-      variable = "token.actions.githubusercontent.com:sub"
-      values   = ["repo:kwame-mintah/*"]
-    }
+    #checkov:skip=CKV_AWS_358:Specific Github Repo And Branch is recommended 
+    # Using a wildcard (*) in token.actions.githubusercontent.com:sub can allow requests from more sources than you intended. 
+    # Specify the value of token.actions.githubusercontent.com:sub with the repository and branch name.
+    # https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html#access-analyzer-reference-policy-checks-general-warning-specific-github-repo-and-branch-recommended
   }
 }
 
 resource "aws_iam_role_policy_attachment" "s3_bucket_inline_policy" {
-  count      = local.create_inline_policy ? 1 : 0
+  count      = local.create_inline_s3_policy ? 1 : 0
   role       = aws_iam_role.github_action_role.name
   policy_arn = aws_iam_policy.s3_allow_action_policy[0].arn
 }
 
 resource "aws_iam_policy" "s3_allow_action_policy" {
-  count  = local.create_inline_policy ? 1 : 0
-  name   = "s3-github-allow-actions"
+  count  = local.create_inline_s3_policy ? 1 : 0
+  name   = "GitHubActionsAllowS3Access"
   policy = data.aws_iam_policy_document.s3_allow_action_policy_document[0].json
 
   tags = merge(
@@ -96,7 +93,7 @@ resource "aws_iam_policy" "s3_allow_action_policy" {
 
 #trivy:ignore:AVD-AWS-0057
 data "aws_iam_policy_document" "s3_allow_action_policy_document" {
-  count = local.create_inline_policy ? 1 : 0
+  count = local.create_inline_s3_policy ? 1 : 0
   statement {
     sid = "AWSGitHubS3AllowActions"
     actions = [
@@ -109,6 +106,45 @@ data "aws_iam_policy_document" "s3_allow_action_policy_document" {
     effect    = "Allow"
     resources = var.s3_bucket
   }
+}
+
+resource "aws_iam_role_policy_attachment" "ecr_inline_policy" {
+  count      = local.create_inline_ecr_policy ? 1 : 0
+  role       = aws_iam_role.github_action_role.name
+  policy_arn = aws_iam_policy.ecr_allow_action_policy[0].arn
+}
+
+resource "aws_iam_policy" "ecr_allow_action_policy" {
+  count  = local.create_inline_ecr_policy ? 1 : 0
+  name   = "GitHubActionsAllowECRAccess"
+  policy = data.aws_iam_policy_document.ecr_allow_action_policy_document[0].json
+
+  tags = merge(
+    local.common_tags,
+  )
+}
+
+#trivy:ignore:AVD-AWS-0057
+data "aws_iam_policy_document" "ecr_allow_action_policy_document" {
+  count = local.create_inline_ecr_policy ? 1 : 0
+  statement {
+    sid = "AWSGitHubECRAllowActions"
+    actions = [
+      "ecr:BatchCheckLayerAvailability",
+      "ecr:BatchGetImage",
+      "ecr:CompleteLayerUpload",
+      "ecr:GetAuthorizationToken",
+      "ecr:GetDownloadUrlForLayer",
+      "ecr:InitiateLayerUpload",
+      "ecr:PutImage",
+      "ecr:UploadLayerPart"
+    ]
+    effect    = "Allow"
+    resources = var.ecr_repository
+  }
+  #checkov:skip=CKV_AWS_356:this is the minimum permissions needed to login and push
+  # This action requires the following minimum set of permissions to login to ECR Private:
+  # https://github.com/aws-actions/amazon-ecr-login/tree/acc668a55b444f06f742db50de9ba3014ddf8d0b?tab=readme-ov-file#permissions
 }
 
 #------------------------------------------------

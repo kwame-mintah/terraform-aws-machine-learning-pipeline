@@ -81,3 +81,11 @@ module "automl_data" {
 
   tags = var.tags
 }
+
+module "serverless_deployment" {
+  source                 = "./modules/s3_bucket"
+  name                   = "${local.name_prefix}-serverless-deployment"
+  principles_identifiers = [module.github_action.github_action_role_arn]
+
+  tags = var.tags
+}

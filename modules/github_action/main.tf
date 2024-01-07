@@ -79,9 +79,9 @@ resource "aws_iam_policy" "s3_allow_action_policy" {
   tags = merge(
     local.common_tags,
     {
-      git_commit           = "cded871efde1611c7aa37bf295b56ef15418515f"
+      git_commit           = "15f077acc384aadce4896fd9053f592b7d0d0345"
       git_file             = "modules/github_action/main.tf"
-      git_last_modified_at = "2023-11-09 22:09:18"
+      git_last_modified_at = "2024-01-07 14:51:39"
       git_last_modified_by = "kwame_mintah@hotmail.co.uk"
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"
@@ -121,7 +121,17 @@ resource "aws_iam_policy" "ecr_allow_action_policy" {
 
   tags = merge(
     local.common_tags,
-  )
+    {
+      git_commit           = "15f077acc384aadce4896fd9053f592b7d0d0345"
+      git_file             = "modules/github_action/main.tf"
+      git_last_modified_at = "2024-01-07 14:51:39"
+      git_last_modified_by = "kwame_mintah@hotmail.co.uk"
+      git_modifiers        = "kwame_mintah"
+      git_org              = "kwame-mintah"
+      git_repo             = "terraform-aws-machine-learning-pipeline"
+      yor_name             = "ecr_allow_action_policy"
+      yor_trace            = "9818afb9-743f-4e35-88db-03ccecd7bcf2"
+  })
 }
 
 #trivy:ignore:AVD-AWS-0057

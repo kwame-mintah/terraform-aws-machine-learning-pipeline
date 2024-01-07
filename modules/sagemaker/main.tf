@@ -322,9 +322,9 @@ resource "aws_security_group" "sagemaker_sg" {
       "Name" = "${var.name}-sagemaker-sg"
     },
     {
-      git_commit           = "fdfa8766a6d7a30bc266c5266960b1305a1c6be3"
+      git_commit           = "7244b14a278e4096480f0f82218678e3b36617b6"
       git_file             = "modules/sagemaker/main.tf"
-      git_last_modified_at = "2023-10-03 21:31:23"
+      git_last_modified_at = "2024-01-06 20:21:39"
       git_last_modified_by = "kwame_mintah@hotmail.co.uk"
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"

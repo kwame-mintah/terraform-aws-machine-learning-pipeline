@@ -11,9 +11,9 @@ resource "aws_ssm_parameter" "s3_bucket_arn" {
       yor_name  = "s3_bucket_arn"
       yor_trace = "d03fa2dd-a80c-4825-bb0c-e4d52965a331"
       }, {
-      git_commit           = "N/A"
+      git_commit           = "1a44732168d83f82ae6abd8f0efdd95536b24d69"
       git_file             = "modules/s3_bucket/parameter-store.tf"
-      git_last_modified_at = "2024-01-08 20:27:51"
+      git_last_modified_at = "2024-01-08 20:32:29"
       git_last_modified_by = "kwame_mintah@hotmail.co.uk"
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"
@@ -34,9 +34,9 @@ resource "aws_ssm_parameter" "s3_bucket_name" {
       yor_name  = "s3_bucket_name"
       yor_trace = "71ebf1ca-1183-479c-af9b-9a2572574ebf"
       }, {
-      git_commit           = "N/A"
+      git_commit           = "1a44732168d83f82ae6abd8f0efdd95536b24d69"
       git_file             = "modules/s3_bucket/parameter-store.tf"
-      git_last_modified_at = "2024-01-08 20:27:51"
+      git_last_modified_at = "2024-01-08 20:32:29"
       git_last_modified_by = "kwame_mintah@hotmail.co.uk"
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"
@@ -54,7 +54,14 @@ resource "aws_ssm_parameter" "s3_kms_key_arn" {
   tags = merge(
     local.common_tags,
     {
-      yor_name  = "s3_kms_key_arn"
-      yor_trace = "f616ff30-65f1-48dc-8258-1d3eb8dba0c7"
+      yor_name             = "s3_kms_key_arn"
+      yor_trace            = "f616ff30-65f1-48dc-8258-1d3eb8dba0c7"
+      git_commit           = "1a44732168d83f82ae6abd8f0efdd95536b24d69"
+      git_file             = "modules/s3_bucket/parameter-store.tf"
+      git_last_modified_at = "2024-01-08 20:32:29"
+      git_last_modified_by = "kwame_mintah@hotmail.co.uk"
+      git_modifiers        = "kwame_mintah"
+      git_org              = "kwame-mintah"
+      git_repo             = "terraform-aws-machine-learning-pipeline"
   })
 }

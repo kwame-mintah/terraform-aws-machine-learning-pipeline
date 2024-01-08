@@ -27,3 +27,34 @@ EOF
   type    = list(string)
   default = []
 }
+
+variable "store_bucket_arn_in_ssm_parameter" {
+  description = <<-EOF
+    Store the ARN of the bucket in Systems Manager Parameter Store.
+    
+EOF
+
+  type    = bool
+  default = false
+}
+
+variable "store_bucket_name_in_ssm_parameter" {
+  description = <<-EOF
+    Store the name of the bucket in Systems Manager Parameter Store.
+    
+EOF
+
+  type    = bool
+  default = false
+}
+
+variable "store_kms_key_arn_in_ssm_parameter" {
+  description = <<-EOF
+    Store the KMS Key in Systems Manager Parameter Store.
+    
+EOF
+
+  type    = bool
+  default = false
+}
+

@@ -89,9 +89,10 @@ module "automl_data" {
 }
 
 module "serverless_deployment" {
-  source                 = "./modules/s3_bucket"
-  name                   = "${local.name_prefix}-serverless-deployment"
-  principles_identifiers = [module.github_action.github_action_role_arn]
+  source                             = "./modules/s3_bucket"
+  name                               = "${local.name_prefix}-serverless-deployment"
+  principles_identifiers             = [module.github_action.github_action_role_arn]
+  store_bucket_name_in_ssm_parameter = true
 
   tags = var.tags
 }

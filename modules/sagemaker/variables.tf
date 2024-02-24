@@ -28,6 +28,16 @@ EOF
   default = "ml.t3.medium"
 }
 
+variable "store_sagemaker_role_in_ssm_arn" {
+  description = <<-EOF
+    Store the SageMaker role arn in Systems Manager Parameter Store.
+    
+EOF
+
+  type    = bool
+  default = false
+}
+
 variable "tags" {
   description = <<-EOF
     Tags to be added to resources created.

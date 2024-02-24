@@ -57,11 +57,12 @@ resource "aws_default_security_group" "default_security_group" {
 
 
 module "sagemaker" {
-  source               = "./modules/sagemaker"
-  name                 = "${local.name_prefix}-sagemaker"
-  vpc_id               = aws_vpc.application_vpc.id
-  vpc_ipv4_cidr_block  = aws_vpc.application_vpc.cidr_block
-  additional_resources = ["${module.ml_data.s3_bucket_arn}/*", module.ml_data.s3_bucket_arn]
+  source                          = "./modules/sagemaker"
+  name                            = "${local.name_prefix}-sagemaker"
+  vpc_id                          = aws_vpc.application_vpc.id
+  vpc_ipv4_cidr_block             = aws_vpc.application_vpc.cidr_block
+  additional_resources            = ["${module.ml_data.s3_bucket_arn}/*", module.ml_data.s3_bucket_arn, "${module.automl_data.s3_bucket_arn}/*", module.automl_data.s3_bucket_arn, "${module.model_output.s3_bucket_arn}/*", module.model_output.s3_bucket_arn]
+  store_sagemaker_role_in_ssm_arn = true
 
   tags = var.tags
 }

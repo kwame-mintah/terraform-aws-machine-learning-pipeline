@@ -27,3 +27,16 @@ module "lambda_model_training_ecr" {
     }
   )
 }
+
+# Repository for lambda docker image for deploying machine learning models
+module "lambda_model_deployment_ecr" {
+  source                 = "./modules/ecr"
+  repository_name        = "${var.project_name}-model-training"
+  principles_identifiers = [module.github_action.github_action_role_arn]
+  tags = merge(
+    var.tags,
+    {
+      image_source = "https://github.com/kwame-mintah/aws-lambda-model-deployment"
+    }
+  )
+}

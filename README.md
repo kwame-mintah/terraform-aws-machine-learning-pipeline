@@ -36,7 +36,7 @@ The main purpose of this repository is to create resources needed for Machine Le
    aws-vault exec <profile> --no-session terragrunt apply
    ```
 
-> **NOTE**
+> [!NOTE]
 >
 > Please note that terragrunt will create an S3 Bucket and DynamoDB table, for storing the remote state. 
 > Ensure the account deploying the resources has the appropriate permissions to create or connect to these resources.

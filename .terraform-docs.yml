@@ -6,7 +6,7 @@ header-from: main.tf
 footer-from: ""
 
 recursive:
-  enabled: false # Enable if you have modules 
+  enabled: true # Enable if you have modules 
   path: modules
 
 sections:
@@ -16,7 +16,7 @@ sections:
 content: ""
 
 output:
-  file: ""
+  file: "README.md"
   mode: inject
   template: |-
     <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK --->

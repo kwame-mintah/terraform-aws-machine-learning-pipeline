@@ -75,22 +75,27 @@ Code formatting and documentation for `variables` and `outputs` is generated usi
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.4 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 5.17.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 5.37.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.17.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.37.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
+| <a name="module_automl_data"></a> [automl\_data](#module\_automl\_data) | ./modules/s3_bucket | n/a |
 | <a name="module_github_action"></a> [github\_action](#module\_github\_action) | ./modules/github_action | n/a |
 | <a name="module_lambda_data_preprocessing_ecr"></a> [lambda\_data\_preprocessing\_ecr](#module\_lambda\_data\_preprocessing\_ecr) | ./modules/ecr | n/a |
+| <a name="module_lambda_model_deployment_ecr"></a> [lambda\_model\_deployment\_ecr](#module\_lambda\_model\_deployment\_ecr) | ./modules/ecr | n/a |
+| <a name="module_lambda_model_training_ecr"></a> [lambda\_model\_training\_ecr](#module\_lambda\_model\_training\_ecr) | ./modules/ecr | n/a |
 | <a name="module_ml_data"></a> [ml\_data](#module\_ml\_data) | ./modules/s3_bucket | n/a |
+| <a name="module_model_output"></a> [model\_output](#module\_model\_output) | ./modules/s3_bucket | n/a |
 | <a name="module_sagemaker"></a> [sagemaker](#module\_sagemaker) | ./modules/sagemaker | n/a |
+| <a name="module_serverless_deployment"></a> [serverless\_deployment](#module\_serverless\_deployment) | ./modules/s3_bucket | n/a |
 
 ## Resources
 

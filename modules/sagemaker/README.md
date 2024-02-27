@@ -8,14 +8,14 @@ This module creates an SageMaker notebook instance, and KMS key to be used.
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.4 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 5.17.0 |
-| <a name="requirement_random"></a> [random](#requirement\_random) | 3.5.1 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 5.37.0 |
+| <a name="requirement_random"></a> [random](#requirement\_random) | ~> 3.5.1 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.17.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.37.0 |
 | <a name="provider_random"></a> [random](#provider\_random) | 3.5.1 |
 
 ## Modules
@@ -42,8 +42,9 @@ No modules.
 | [aws_sagemaker_notebook_instance.notebook_instance](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sagemaker_notebook_instance) | resource |
 | [aws_sagemaker_notebook_instance_lifecycle_configuration.lifecycle_configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sagemaker_notebook_instance_lifecycle_configuration) | resource |
 | [aws_security_group.sagemaker_sg](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
+| [aws_ssm_parameter.sagemaker_execution_role_arn](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssm_parameter) | resource |
 | [aws_subnet.sagemaker_subnet](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet) | resource |
-| [random_string.resource_code](https://registry.terraform.io/providers/hashicorp/random/3.5.1/docs/resources/string) | resource |
+| [random_string.resource_code](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string) | resource |
 | [aws_caller_identity.current_caller_identity](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
 | [aws_iam_policy_document.kms_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_iam_policy_document.sagemaker_assume_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
@@ -57,6 +58,7 @@ No modules.
 | <a name="input_additional_resources"></a> [additional\_resources](#input\_additional\_resources) | Additional resources to add to the `sagemaker_notebook_instance_policy` policy<br>for `SageMakerExecutionRole` IAM role. | `list(string)` | `[]` | no |
 | <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | The name of ML compute instance type. | `string` | `"ml.t3.medium"` | no |
 | <a name="input_name"></a> [name](#input\_name) | The name of the notebook instance (must be unique). | `string` | n/a | yes |
+| <a name="input_store_sagemaker_role_in_ssm_arn"></a> [store\_sagemaker\_role\_in\_ssm\_arn](#input\_store\_sagemaker\_role\_in\_ssm\_arn) | Store the SageMaker role arn in Systems Manager Parameter Store. | `bool` | `false` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags to be added to resources created. | `map(string)` | `{}` | no |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | The VPC ID. | `string` | n/a | yes |
 | <a name="input_vpc_ipv4_cidr_block"></a> [vpc\_ipv4\_cidr\_block](#input\_vpc\_ipv4\_cidr\_block) | The IPv4 CIDR block for the VPC. | `string` | n/a | yes |

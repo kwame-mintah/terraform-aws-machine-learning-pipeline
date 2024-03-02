@@ -1,7 +1,9 @@
 # Terraform AWS Machine Learning Pipeline
 
-The main purpose of this repository is to create resources needed for Machine Learning within AWS. And to have a better understanding of Machine Learning Operations (MLOps). Notes can be found in my [notes-md](https://github.com/kwame-mintah/notes-md) repository, additionally data used can be found in [ml-data-copy-to-aws-s3
-](https://github.com/kwame-mintah/ml-data-copy-to-aws-s3).
+The main purpose of this repository is to create resources needed for Machine Learning within AWS. And have a better understanding of Machine Learning Operations (MLOps). Notes can be found in my [notes-md](https://github.com/kwame-mintah/notes-md) repository, data used can be found in [ml-data-copy-to-aws-s3](https://github.com/kwame-mintah/ml-data-copy-to-aws-s3).
+
+Additionally, [serverless framework](https://www.serverless.com/) is being used to deploy various AWS Lambda functions, this can be
+found in [aws-automlops-serverless-deployment](https://github.com/kwame-mintah/aws-automlops-serverless-deployment).
 
 ## Development
 

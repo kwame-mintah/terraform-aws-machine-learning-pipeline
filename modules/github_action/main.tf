@@ -143,6 +143,7 @@ data "aws_iam_policy_document" "ecr_allow_action_policy_document" {
       "ecr:BatchCheckLayerAvailability",
       "ecr:BatchGetImage",
       "ecr:CompleteLayerUpload",
+      "ecr:DescribeImages",
       "ecr:GetAuthorizationToken",
       "ecr:GetDownloadUrlForLayer",
       "ecr:InitiateLayerUpload",

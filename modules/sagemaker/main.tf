@@ -280,11 +280,11 @@ data "aws_iam_policy_document" "kms_policy" {
       test     = "ArnEquals"
       variable = "kms:EncryptionContext:aws:logs:arn"
       values = [
-        "arn:aws:logs:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:log-group:/aws/sagemaker/Endpoints",
-        "arn:aws:logs:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:log-group:/aws/sagemaker/Endpoints/linear-learner",
-        "arn:aws:logs:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:log-group:/aws/sagemaker/NotebookInstances",
-        "arn:aws:logs:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:log-group:/aws/sagemaker/ProcessingJobs",
-        "arn:aws:logs:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:log-group:/aws/sagemaker/TrainingJobs",
+        "arn:aws:logs:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:log-group:/aws/sagemaker-${var.name}/Endpoints",
+        "arn:aws:logs:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:log-group:/aws/sagemaker-${var.name}/Endpoints/linear-learner",
+        "arn:aws:logs:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:log-group:/aws/sagemaker-${var.name}/NotebookInstances",
+        "arn:aws:logs:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:log-group:/aws/sagemaker-${var.name}/ProcessingJobs",
+        "arn:aws:logs:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:log-group:/aws/sagemaker-${var.name}/TrainingJobs",
 
       ]
     }
@@ -387,7 +387,7 @@ resource "aws_route_table_association" "route_table_association" {
 # CloudWatch Log Group
 #---------------------------------------------------
 resource "aws_cloudwatch_log_group" "sagemaker_notebook_instances" {
-  name              = "/aws/sagemaker/NotebookInstances"
+  name              = "/aws/sagemaker-${var.name}/NotebookInstances"
   kms_key_id        = aws_kms_key.kms.arn # Same KMS as SageMaker?
   retention_in_days = "7"
 
@@ -407,7 +407,7 @@ resource "aws_cloudwatch_log_group" "sagemaker_notebook_instances" {
 }
 
 resource "aws_cloudwatch_log_group" "sagemaker_training_jobs" {
-  name              = "/aws/sagemaker/TrainingJobs"
+  name              = "/aws/sagemaker-${var.name}/TrainingJobs"
   kms_key_id        = aws_kms_key.kms.arn # Same KMS as SageMaker?
   retention_in_days = "7"
 
@@ -427,7 +427,7 @@ resource "aws_cloudwatch_log_group" "sagemaker_training_jobs" {
 }
 
 resource "aws_cloudwatch_log_group" "sagemaker_endpoints" {
-  name              = "/aws/sagemaker/Endpoints/linear-learner"
+  name              = "/aws/sagemaker-${var.name}/Endpoints/linear-learner"
   kms_key_id        = aws_kms_key.kms.arn # Same KMS as SageMaker?
   retention_in_days = "7"
 
@@ -447,7 +447,7 @@ resource "aws_cloudwatch_log_group" "sagemaker_endpoints" {
 }
 
 resource "aws_cloudwatch_log_group" "processing_jobs" {
-  name              = "/aws/sagemaker/ProcessingJobs"
+  name              = "/aws/sagemaker-${var.name}/ProcessingJobs"
   kms_key_id        = aws_kms_key.kms.arn # Same KMS as SageMaker?
   retention_in_days = "7"
 
@@ -467,7 +467,7 @@ resource "aws_cloudwatch_log_group" "processing_jobs" {
 }
 
 resource "aws_cloudwatch_log_group" "endpoints" {
-  name              = "/aws/sagemaker/Endpoints"
+  name              = "/aws/sagemaker-${var.name}/Endpoints"
   kms_key_id        = aws_kms_key.kms.arn # Same KMS as SageMaker?
   retention_in_days = "7"
 

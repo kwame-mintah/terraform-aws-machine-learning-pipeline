@@ -28,9 +28,9 @@ resource "aws_s3_bucket" "s3_bucket" {
   tags = merge(
     local.common_tags,
     {
-      git_commit           = "6a8a81c800dcaefed70b28d8692080306b9ae9fc"
+      git_commit           = "947258e74019334dec410d7525b3726f7de2e4aa"
       git_file             = "modules/s3_bucket/main.tf"
-      git_last_modified_at = "2023-10-03 21:16:24"
+      git_last_modified_at = "2023-10-03 21:31:23"
       git_last_modified_by = "kwame_mintah@hotmail.co.uk"
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"

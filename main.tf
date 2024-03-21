@@ -43,9 +43,9 @@ resource "aws_default_security_group" "default_security_group" {
   tags = merge(
     var.tags,
     {
-      git_commit           = "50099d4f09f2eb9b871f799b543875169445851c"
+      git_commit           = "8de867661d7d0e212ed294d6a0f7101c6c38cce8"
       git_file             = "main.tf"
-      git_last_modified_at = "2023-11-14 18:35:59"
+      git_last_modified_at = "2023-11-14 18:44:37"
       git_last_modified_by = "kwame_mintah@hotmail.co.uk"
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"
@@ -96,6 +96,16 @@ module "model_output" {
   store_bucket_arn_in_ssm_parameter  = true
   store_bucket_name_in_ssm_parameter = true
   store_kms_key_arn_in_ssm_parameter = true
+
+  tags = var.tags
+}
+
+module "model_monitoring" {
+  source                             = "./modules/s3_bucket"
+  name                               = "${local.name_prefix}-model-monitoring"
+  principles_identifiers             = [module.sagemaker.sagemaker_notebook_execution_role_arn, module.github_action.github_action_role_arn]
+  store_bucket_arn_in_ssm_parameter  = true
+  store_bucket_name_in_ssm_parameter = true
 
   tags = var.tags
 }

@@ -22,9 +22,9 @@ resource "aws_iam_role" "github_action_role" {
   tags = merge(
     local.common_tags,
     {
-      git_commit           = "ae71c751ae69f68bdfb1e291aa18c91cf2aa3681"
+      git_commit           = "94d4bea21b7f770d88610a210d2d2cbb551dabd3"
       git_file             = "modules/github_action/main.tf"
-      git_last_modified_at = "2023-10-05 20:18:59"
+      git_last_modified_at = "2023-10-06 19:51:17"
       git_last_modified_by = "kwame_mintah@hotmail.co.uk"
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"
@@ -122,9 +122,9 @@ resource "aws_iam_policy" "ecr_allow_action_policy" {
   tags = merge(
     local.common_tags,
     {
-      git_commit           = "15f077acc384aadce4896fd9053f592b7d0d0345"
+      git_commit           = "8881e710653918737b2a5ec73174cead983aab02"
       git_file             = "modules/github_action/main.tf"
-      git_last_modified_at = "2024-01-07 14:51:39"
+      git_last_modified_at = "2024-01-07 14:57:46"
       git_last_modified_by = "kwame_mintah@hotmail.co.uk"
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"

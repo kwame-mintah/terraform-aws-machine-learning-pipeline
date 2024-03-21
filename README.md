@@ -95,6 +95,7 @@ Code formatting and documentation for `variables` and `outputs` is generated usi
 | <a name="module_lambda_model_deployment_ecr"></a> [lambda\_model\_deployment\_ecr](#module\_lambda\_model\_deployment\_ecr) | ./modules/ecr | n/a |
 | <a name="module_lambda_model_training_ecr"></a> [lambda\_model\_training\_ecr](#module\_lambda\_model\_training\_ecr) | ./modules/ecr | n/a |
 | <a name="module_ml_data"></a> [ml\_data](#module\_ml\_data) | ./modules/s3_bucket | n/a |
+| <a name="module_model_monitoring"></a> [model\_monitoring](#module\_model\_monitoring) | ./modules/s3_bucket | n/a |
 | <a name="module_model_output"></a> [model\_output](#module\_model\_output) | ./modules/s3_bucket | n/a |
 | <a name="module_sagemaker"></a> [sagemaker](#module\_sagemaker) | ./modules/sagemaker | n/a |
 | <a name="module_serverless_deployment"></a> [serverless\_deployment](#module\_serverless\_deployment) | ./modules/s3_bucket | n/a |

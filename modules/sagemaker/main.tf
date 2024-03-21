@@ -394,9 +394,9 @@ resource "aws_cloudwatch_log_group" "sagemaker_notebook_instances" {
   tags = merge(
     local.common_tags
     , {
-      git_commit           = "e2dad50a718976154a90f5802ca4acc53fb1f676"
+      git_commit           = "2ea159789703d32889ae6e57b5c6005e6b6ac7b8"
       git_file             = "modules/sagemaker/main.tf"
-      git_last_modified_at = "2023-11-09 20:46:13"
+      git_last_modified_at = "2024-03-05 14:09:16"
       git_last_modified_by = "kwame_mintah@hotmail.co.uk"
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"
@@ -414,9 +414,9 @@ resource "aws_cloudwatch_log_group" "sagemaker_training_jobs" {
   tags = merge(
     local.common_tags
     , {
-      git_commit           = "e2dad50a718976154a90f5802ca4acc53fb1f676"
+      git_commit           = "2ea159789703d32889ae6e57b5c6005e6b6ac7b8"
       git_file             = "modules/sagemaker/main.tf"
-      git_last_modified_at = "2023-11-09 20:46:13"
+      git_last_modified_at = "2024-03-05 14:09:16"
       git_last_modified_by = "kwame_mintah@hotmail.co.uk"
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"
@@ -434,9 +434,9 @@ resource "aws_cloudwatch_log_group" "sagemaker_endpoints" {
   tags = merge(
     local.common_tags,
     {
-      git_commit           = "e2dad50a718976154a90f5802ca4acc53fb1f676"
+      git_commit           = "2ea159789703d32889ae6e57b5c6005e6b6ac7b8"
       git_file             = "modules/sagemaker/main.tf"
-      git_last_modified_at = "2023-11-09 20:46:13"
+      git_last_modified_at = "2024-03-05 14:09:16"
       git_last_modified_by = "kwame_mintah@hotmail.co.uk"
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"
@@ -454,9 +454,9 @@ resource "aws_cloudwatch_log_group" "processing_jobs" {
   tags = merge(
     local.common_tags,
     {
-      git_commit           = "ea4f3f3011bc91d8e746cdfc7d4cccbae01f0625"
+      git_commit           = "2ea159789703d32889ae6e57b5c6005e6b6ac7b8"
       git_file             = "modules/sagemaker/main.tf"
-      git_last_modified_at = "2023-11-15 20:39:57"
+      git_last_modified_at = "2024-03-05 14:09:16"
       git_last_modified_by = "kwame_mintah@hotmail.co.uk"
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"
@@ -474,9 +474,9 @@ resource "aws_cloudwatch_log_group" "endpoints" {
   tags = merge(
     local.common_tags,
     {
-      git_commit           = "ea4f3f3011bc91d8e746cdfc7d4cccbae01f0625"
+      git_commit           = "2ea159789703d32889ae6e57b5c6005e6b6ac7b8"
       git_file             = "modules/sagemaker/main.tf"
-      git_last_modified_at = "2023-11-15 20:39:57"
+      git_last_modified_at = "2024-03-05 14:09:16"
       git_last_modified_by = "kwame_mintah@hotmail.co.uk"
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"

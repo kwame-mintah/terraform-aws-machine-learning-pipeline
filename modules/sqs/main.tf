@@ -20,7 +20,17 @@ resource "aws_sqs_queue" "sqs_queue" {
 
   tags = merge(
     local.common_tags,
-  )
+    {
+      git_commit           = "b8696339367e4f2fabd6c196b4df6736b001480a"
+      git_file             = "modules/sqs/main.tf"
+      git_last_modified_at = "2024-04-11 21:41:28"
+      git_last_modified_by = "kwame_mintah@hotmail.co.uk"
+      git_modifiers        = "kwame_mintah"
+      git_org              = "kwame-mintah"
+      git_repo             = "terraform-aws-machine-learning-pipeline"
+      yor_name             = "sqs_queue"
+      yor_trace            = "d4e61dd3-ea0e-4710-a9fc-27ec9b9b1c87"
+  })
 }
 
 resource "aws_sqs_queue" "dlq_queue" {
@@ -30,5 +40,15 @@ resource "aws_sqs_queue" "dlq_queue" {
 
   tags = merge(
     local.common_tags,
-  )
+    {
+      git_commit           = "b8696339367e4f2fabd6c196b4df6736b001480a"
+      git_file             = "modules/sqs/main.tf"
+      git_last_modified_at = "2024-04-11 21:41:28"
+      git_last_modified_by = "kwame_mintah@hotmail.co.uk"
+      git_modifiers        = "kwame_mintah"
+      git_org              = "kwame-mintah"
+      git_repo             = "terraform-aws-machine-learning-pipeline"
+      yor_name             = "dlq_queue"
+      yor_trace            = "45871797-5e20-40e8-9dd3-ee5fb1539433"
+  })
 }

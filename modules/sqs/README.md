@@ -26,6 +26,10 @@ No modules.
 |------|------|
 | [aws_sqs_queue.dlq_queue](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sqs_queue) | resource |
 | [aws_sqs_queue.sqs_queue](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sqs_queue) | resource |
+| [aws_ssm_parameter.dlq_arn](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssm_parameter) | resource |
+| [aws_ssm_parameter.dlq_name](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssm_parameter) | resource |
+| [aws_ssm_parameter.queue_arn](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssm_parameter) | resource |
+| [aws_ssm_parameter.queue_name](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssm_parameter) | resource |
 
 ## Inputs
 
@@ -35,6 +39,10 @@ No modules.
 | <a name="input_message_retention_seconds"></a> [message\_retention\_seconds](#input\_message\_retention\_seconds) | The number of seconds Amazon SQS retains a message. | `number` | `345600` | no |
 | <a name="input_name"></a> [name](#input\_name) | The name of the queue. | `string` | n/a | yes |
 | <a name="input_queue_visibility_timeout_seconds"></a> [queue\_visibility\_timeout\_seconds](#input\_queue\_visibility\_timeout\_seconds) | The visibility timeout for the queue. | `number` | `30` | no |
+| <a name="input_store_dlq_arn"></a> [store\_dlq\_arn](#input\_store\_dlq\_arn) | Store the ARN of the DLQ in Systems Manager Parameter Store. | `bool` | `false` | no |
+| <a name="input_store_dlq_name"></a> [store\_dlq\_name](#input\_store\_dlq\_name) | Store the name of the DLQ in Systems Manager Parameter Store. | `bool` | `false` | no |
+| <a name="input_store_queue_arn"></a> [store\_queue\_arn](#input\_store\_queue\_arn) | Store the ARN of the queue in Systems Manager Parameter Store. | `bool` | `false` | no |
+| <a name="input_store_queue_name"></a> [store\_queue\_name](#input\_store\_queue\_name) | Store the name of the queue in Systems Manager Parameter Store. | `bool` | `false` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags to be added to resources created. | `map(string)` | `{}` | no |
 
 ## Outputs

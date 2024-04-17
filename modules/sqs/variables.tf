@@ -37,6 +37,46 @@ EOF
   default = 30
 }
 
+variable "store_dlq_arn" {
+  description = <<-EOF
+    Store the ARN of the DLQ in Systems Manager Parameter Store.
+    
+EOF
+
+  type    = bool
+  default = false
+}
+
+variable "store_dlq_name" {
+  description = <<-EOF
+    Store the name of the DLQ in Systems Manager Parameter Store.
+    
+EOF
+
+  type    = bool
+  default = false
+}
+
+variable "store_queue_arn" {
+  description = <<-EOF
+    Store the ARN of the queue in Systems Manager Parameter Store.
+    
+EOF
+
+  type    = bool
+  default = false
+}
+
+variable "store_queue_name" {
+  description = <<-EOF
+    Store the name of the queue in Systems Manager Parameter Store.
+    
+EOF
+
+  type    = bool
+  default = false
+}
+
 variable "tags" {
   description = <<-EOF
     Tags to be added to resources created.

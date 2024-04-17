@@ -21,9 +21,9 @@ resource "aws_sqs_queue" "sqs_queue" {
   tags = merge(
     local.common_tags,
     {
-      git_commit           = "b8696339367e4f2fabd6c196b4df6736b001480a"
+      git_commit           = "5a0076bb33c093b3e982fea30075951e2525dba5"
       git_file             = "modules/sqs/main.tf"
-      git_last_modified_at = "2024-04-11 21:41:28"
+      git_last_modified_at = "2024-04-17 19:06:45"
       git_last_modified_by = "kwame_mintah@hotmail.co.uk"
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"
@@ -41,9 +41,9 @@ resource "aws_sqs_queue" "dlq_queue" {
   tags = merge(
     local.common_tags,
     {
-      git_commit           = "b8696339367e4f2fabd6c196b4df6736b001480a"
+      git_commit           = "5a0076bb33c093b3e982fea30075951e2525dba5"
       git_file             = "modules/sqs/main.tf"
-      git_last_modified_at = "2024-04-11 21:41:28"
+      git_last_modified_at = "2024-04-17 19:06:45"
       git_last_modified_by = "kwame_mintah@hotmail.co.uk"
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"

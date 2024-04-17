@@ -16,9 +16,9 @@ resource "aws_ssm_parameter" "queue_arn" {
       yor_name  = "queue_arn"
       yor_trace = "e295390b-d895-4537-8312-4b480d062a12"
       }, {
-      git_commit           = "N/A"
+      git_commit           = "e5bfc6fed0a9397b7daf343aa0728b99db49105d"
       git_file             = "modules/sqs/parameter-store.tf"
-      git_last_modified_at = "2024-04-17 19:17:20"
+      git_last_modified_at = "2024-04-17 19:19:21"
       git_last_modified_by = "kwame_mintah@hotmail.co.uk"
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"
@@ -39,9 +39,9 @@ resource "aws_ssm_parameter" "dlq_arn" {
       yor_name  = "dlq_arn"
       yor_trace = "15ff26d6-345f-4e19-86a3-b98e4e54dee4"
       }, {
-      git_commit           = "N/A"
+      git_commit           = "e5bfc6fed0a9397b7daf343aa0728b99db49105d"
       git_file             = "modules/sqs/parameter-store.tf"
-      git_last_modified_at = "2024-04-17 19:17:20"
+      git_last_modified_at = "2024-04-17 19:19:21"
       git_last_modified_by = "kwame_mintah@hotmail.co.uk"
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"
@@ -62,9 +62,9 @@ resource "aws_ssm_parameter" "queue_name" {
       yor_name  = "queue_name"
       yor_trace = "37f0d9c5-fd9b-4391-8682-735410cccb4b"
       }, {
-      git_commit           = "N/A"
+      git_commit           = "e5bfc6fed0a9397b7daf343aa0728b99db49105d"
       git_file             = "modules/sqs/parameter-store.tf"
-      git_last_modified_at = "2024-04-17 19:17:20"
+      git_last_modified_at = "2024-04-17 19:19:21"
       git_last_modified_by = "kwame_mintah@hotmail.co.uk"
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"
@@ -85,9 +85,9 @@ resource "aws_ssm_parameter" "dlq_name" {
       yor_name  = "dlq_name"
       yor_trace = "3457eb70-1f1c-4cae-9493-610cb2029df8"
       }, {
-      git_commit           = "N/A"
+      git_commit           = "e5bfc6fed0a9397b7daf343aa0728b99db49105d"
       git_file             = "modules/sqs/parameter-store.tf"
-      git_last_modified_at = "2024-04-17 19:17:20"
+      git_last_modified_at = "2024-04-17 19:19:21"
       git_last_modified_by = "kwame_mintah@hotmail.co.uk"
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"
@@ -109,6 +109,14 @@ resource "aws_kms_key" "kms" {
     {
       yor_name  = "kms"
       yor_trace = "c2977178-c76f-4df9-a73e-6c46fb28f32f"
+      }, {
+      git_commit           = "e5bfc6fed0a9397b7daf343aa0728b99db49105d"
+      git_file             = "modules/sqs/parameter-store.tf"
+      git_last_modified_at = "2024-04-17 19:19:21"
+      git_last_modified_by = "kwame_mintah@hotmail.co.uk"
+      git_modifiers        = "kwame_mintah"
+      git_org              = "kwame-mintah"
+      git_repo             = "terraform-aws-machine-learning-pipeline"
   })
 }
 

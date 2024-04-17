@@ -55,6 +55,9 @@ resource "aws_default_security_group" "default_security_group" {
   })
 }
 
+#---------------------------------------------------
+# SageMaker notebook instance(s)
+#---------------------------------------------------
 
 module "sagemaker" {
   source                          = "./modules/sagemaker"
@@ -66,6 +69,10 @@ module "sagemaker" {
 
   tags = var.tags
 }
+
+#---------------------------------------------------
+# S3 Buckets
+#---------------------------------------------------
 
 module "ml_data" {
   source                             = "./modules/s3_bucket"
@@ -115,6 +122,20 @@ module "serverless_deployment" {
   name                               = "${local.name_prefix}-serverless-deployment"
   principles_identifiers             = [module.github_action.github_action_role_arn]
   store_bucket_name_in_ssm_parameter = true
+
+  tags = var.tags
+}
+
+#---------------------------------------------------
+# Queue(s)
+#---------------------------------------------------
+
+module "model_eval_queue" {
+  source           = "./modules/sqs"
+  name             = "${local.name_prefix}-model-evaluation"
+  store_queue_name = true
+  store_queue_arn  = true
+  store_dlq_name   = true
 
   tags = var.tags
 }

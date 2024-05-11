@@ -107,9 +107,8 @@ resource "aws_kms_key" "kms" {
   tags = merge(
     local.common_tags,
     {
-      yor_name  = "kms"
-      yor_trace = "c2977178-c76f-4df9-a73e-6c46fb28f32f"
-      }, {
+      yor_name             = "kms"
+      yor_trace            = "c2977178-c76f-4df9-a73e-6c46fb28f32f"
       git_commit           = "e5bfc6fed0a9397b7daf343aa0728b99db49105d"
       git_file             = "modules/sqs/parameter-store.tf"
       git_last_modified_at = "2024-04-17 19:19:21"

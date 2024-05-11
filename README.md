@@ -93,6 +93,7 @@ Code formatting and documentation for `variables` and `outputs` is generated usi
 | <a name="module_github_action"></a> [github\_action](#module\_github\_action) | ./modules/github_action | n/a |
 | <a name="module_lambda_data_preprocessing_ecr"></a> [lambda\_data\_preprocessing\_ecr](#module\_lambda\_data\_preprocessing\_ecr) | ./modules/ecr | n/a |
 | <a name="module_lambda_model_deployment_ecr"></a> [lambda\_model\_deployment\_ecr](#module\_lambda\_model\_deployment\_ecr) | ./modules/ecr | n/a |
+| <a name="module_lambda_model_evaluation_ecr"></a> [lambda\_model\_evaluation\_ecr](#module\_lambda\_model\_evaluation\_ecr) | ./modules/ecr | n/a |
 | <a name="module_lambda_model_training_ecr"></a> [lambda\_model\_training\_ecr](#module\_lambda\_model\_training\_ecr) | ./modules/ecr | n/a |
 | <a name="module_ml_data"></a> [ml\_data](#module\_ml\_data) | ./modules/s3_bucket | n/a |
 | <a name="module_model_eval_queue"></a> [model\_eval\_queue](#module\_model\_eval\_queue) | ./modules/sqs | n/a |

@@ -5,7 +5,7 @@ data "aws_caller_identity" "current_caller_identity" {}
 
 resource "aws_ssm_parameter" "queue_arn" {
   count  = var.store_queue_arn ? 1 : 0
-  name   = "${var.name}-arn"
+  name   = "${var.name}-queue-arn"
   type   = "SecureString"
   value  = aws_sqs_queue.sqs_queue.arn
   key_id = aws_kms_key.kms.id
@@ -51,7 +51,7 @@ resource "aws_ssm_parameter" "dlq_arn" {
 
 resource "aws_ssm_parameter" "queue_name" {
   count  = var.store_queue_name ? 1 : 0
-  name   = "${var.name}-name"
+  name   = "${var.name}-queue-name"
   type   = "SecureString"
   value  = aws_sqs_queue.sqs_queue.name
   key_id = aws_kms_key.kms.id

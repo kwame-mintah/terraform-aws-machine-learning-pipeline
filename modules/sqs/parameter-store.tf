@@ -16,9 +16,9 @@ resource "aws_ssm_parameter" "queue_arn" {
       yor_name  = "queue_arn"
       yor_trace = "e295390b-d895-4537-8312-4b480d062a12"
       }, {
-      git_commit           = "e5bfc6fed0a9397b7daf343aa0728b99db49105d"
+      git_commit           = "538bdd42189f0d6afbc33afaca6a4832124aefa8"
       git_file             = "modules/sqs/parameter-store.tf"
-      git_last_modified_at = "2024-04-17 19:19:21"
+      git_last_modified_at = "2024-05-14 07:51:21"
       git_last_modified_by = "kwame_mintah@hotmail.co.uk"
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"
@@ -62,9 +62,9 @@ resource "aws_ssm_parameter" "queue_name" {
       yor_name  = "queue_name"
       yor_trace = "37f0d9c5-fd9b-4391-8682-735410cccb4b"
       }, {
-      git_commit           = "e5bfc6fed0a9397b7daf343aa0728b99db49105d"
+      git_commit           = "538bdd42189f0d6afbc33afaca6a4832124aefa8"
       git_file             = "modules/sqs/parameter-store.tf"
-      git_last_modified_at = "2024-04-17 19:19:21"
+      git_last_modified_at = "2024-05-14 07:51:21"
       git_last_modified_by = "kwame_mintah@hotmail.co.uk"
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"

@@ -22,3 +22,15 @@ resource "aws_ssm_parameter" "sagemaker_execution_role_arn" {
       git_repo             = "terraform-aws-machine-learning-pipeline"
   })
 }
+
+resource "aws_ssm_parameter" "sagemaker_kms_arn" {
+  count  = var.store_sagemaker_role_in_ssm_arn ? 1 : 0
+  name   = "${var.name}-kms-key-arn"
+  type   = "SecureString"
+  value  = aws_kms_key.kms.arn
+  key_id = aws_kms_key.kms.id
+
+  tags = merge(
+    local.common_tags,
+  )
+}

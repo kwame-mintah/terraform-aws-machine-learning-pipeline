@@ -32,5 +32,15 @@ resource "aws_ssm_parameter" "sagemaker_kms_arn" {
 
   tags = merge(
     local.common_tags,
-  )
+    {
+      git_commit           = "6c9d2c0be6c5663fc5e1e5e08fe2651bf155df9f"
+      git_file             = "modules/sagemaker/parameter-store.tf"
+      git_last_modified_at = "2024-05-18 12:23:34"
+      git_last_modified_by = "kwame_mintah@hotmail.co.uk"
+      git_modifiers        = "kwame_mintah"
+      git_org              = "kwame-mintah"
+      git_repo             = "terraform-aws-machine-learning-pipeline"
+      yor_name             = "sagemaker_kms_arn"
+      yor_trace            = "08bf09b8-3c62-4758-904f-6008b48a6d22"
+  })
 }

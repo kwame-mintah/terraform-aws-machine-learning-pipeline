@@ -95,6 +95,18 @@ resource "aws_ssm_parameter" "dlq_name" {
   })
 }
 
+resource "aws_ssm_parameter" "ssm_kms_key_arn" {
+  count  = var.store_dlq_name ? 1 : 0
+  name   = "${var.name}-kms-key-arn"
+  type   = "SecureString"
+  value  = aws_kms_key.kms.arn
+  key_id = aws_kms_key.kms.id
+
+  tags = merge(
+    local.common_tags,
+  )
+}
+
 #---------------------------------------------------
 # Key Management Service
 #---------------------------------------------------

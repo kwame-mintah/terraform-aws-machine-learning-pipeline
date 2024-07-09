@@ -101,9 +101,9 @@ resource "aws_ssm_parameter" "ssm_kms_key_arn" {
   tags = merge(
     local.common_tags,
     {
-      git_commit           = "f4ce7fb4c6a6c6d81e7092ad5a67859cd433c709"
+      git_commit           = "e6a05b8c49252c9fe81099673e1a4d98e4640ce8"
       git_file             = "modules/sqs/parameter-store.tf"
-      git_last_modified_at = "2024-05-18 12:22:00"
+      git_last_modified_at = "2024-05-18 12:26:49"
       git_last_modified_by = "kwame_mintah@hotmail.co.uk"
       git_modifiers        = "kwame_mintah"
       git_org              = "kwame-mintah"

@@ -113,6 +113,7 @@ module "model_monitoring" {
   principles_identifiers             = [module.sagemaker.sagemaker_notebook_execution_role_arn, module.github_action.github_action_role_arn]
   store_bucket_arn_in_ssm_parameter  = true
   store_bucket_name_in_ssm_parameter = true
+  store_kms_key_arn_in_ssm_parameter = true
 
   tags = var.tags
 }

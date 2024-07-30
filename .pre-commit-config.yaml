@@ -1,14 +1,14 @@
 repos:
-- repo: https://github.com/bridgecrewio/yor # Get the latest from: https://github.com/bridgecrewio/yor/releases
-  rev: 0.1.196
-  hooks:
-    - id: yor
-      name: yor
-      entry: yor tag -d
-      args: ["."]
-      language: golang
-      types: [terraform]
-      pass_filenames: false
+# - repo: https://github.com/bridgecrewio/yor # Get the latest from: https://github.com/bridgecrewio/yor/releases
+#   rev: 0.1.198
+#   hooks:
+#     - id: yor
+#       name: yor
+#       entry: yor tag -d
+#       args: ["."]
+#       language: golang
+#       types: [terraform]
+#       pass_filenames: false
 - repo: https://github.com/gruntwork-io/pre-commit
   rev: v0.1.23 # Get the latest from: https://github.com/gruntwork-io/pre-commit/releases
   hooks:
@@ -39,7 +39,7 @@ repos:
       - '--args=--enable-rule=terraform_unused_required_providers'
       - '--args=--enable-rule=terraform_standard_module_structure'
 - repo: https://github.com/commitizen-tools/commitizen
-  rev: v3.27.0 # Get the latest from: https://github.com/commitizen-tools/commitizen/releases
+  rev: v3.28.0 # Get the latest from: https://github.com/commitizen-tools/commitizen/releases
   hooks:
     - id: commitizen
       stages: [commit-msg]

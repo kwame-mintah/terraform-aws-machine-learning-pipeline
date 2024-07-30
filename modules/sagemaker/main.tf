@@ -189,7 +189,7 @@ data "aws_iam_policy_document" "sagemaker_notebook_instance_policy" {
       "arn:aws:sagemaker:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:endpoint/xgboost*",
       "arn:aws:sagemaker:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:model/xgboost*",
       "arn:aws:sagemaker:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:training-job/*",
-      "${aws_cloudwatch_log_group.sagemaker_training_jobs.arn}:*",
+      "arn:aws:logs:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:log-group:/aws/sagemaker/*",
     ]) : [aws_sagemaker_notebook_instance.notebook_instance.arn, aws_iam_role.sagemaker_execution_role.arn]
   }
 }
@@ -256,45 +256,6 @@ data "aws_iam_policy_document" "kms_policy" {
       identifiers = ["arn:aws:iam::${data.aws_caller_identity.current_caller_identity.account_id}:role/SageMakerExecutionRole"]
     }
     resources = [aws_sagemaker_notebook_instance.notebook_instance.arn]
-  }
-
-  statement {
-    sid    = "Allow logs to (encryp,decryp)t messages"
-    effect = "Allow"
-
-    actions = [
-      "kms:Encrypt*",
-      "kms:Decrypt*",
-      "kms:ReEncrypt*",
-      "kms:GenerateDataKey*",
-      "kms:Describe*"
-    ]
-    resources = ["*"]
-
-    principals {
-      identifiers = ["logs.${data.aws_region.current_caller_region.name}.amazonaws.com"]
-      type        = "Service"
-    }
-
-    condition {
-      test     = "ArnEquals"
-      variable = "kms:EncryptionContext:aws:logs:arn"
-      values = [
-        "arn:aws:logs:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:log-group:/aws/sagemaker-${var.name}/Endpoints",
-        "arn:aws:logs:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:log-group:/aws/sagemaker-${var.name}/Endpoints/linear-learner",
-        "arn:aws:logs:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:log-group:/aws/sagemaker-${var.name}/NotebookInstances",
-        "arn:aws:logs:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:log-group:/aws/sagemaker-${var.name}/ProcessingJobs",
-        "arn:aws:logs:${data.aws_region.current_caller_region.name}:${data.aws_caller_identity.current_caller_identity.account_id}:log-group:/aws/sagemaker-${var.name}/TrainingJobs",
-
-      ]
-    }
-
-    # Potentially useful, will re-consider at a later date.
-    # condition {
-    #   test     = "StringEquals"
-    #   variable = "kms:ViaService"
-    #   values   = ["logs.${data.aws_region.current_caller_region.name}.amazonaws.com"]
-    # }
   }
 }
 
@@ -380,108 +341,4 @@ resource "aws_route_table" "route_table" {
 resource "aws_route_table_association" "route_table_association" {
   subnet_id      = aws_subnet.sagemaker_subnet.id
   route_table_id = aws_route_table.route_table.id
-}
-
-
-#---------------------------------------------------
-# CloudWatch Log Group
-#---------------------------------------------------
-resource "aws_cloudwatch_log_group" "sagemaker_notebook_instances" {
-  name              = "/aws/sagemaker-${var.name}/NotebookInstances"
-  kms_key_id        = aws_kms_key.kms.arn # Same KMS as SageMaker?
-  retention_in_days = "7"
-
-  tags = merge(
-    local.common_tags
-    , {
-      git_commit           = "2ea159789703d32889ae6e57b5c6005e6b6ac7b8"
-      git_file             = "modules/sagemaker/main.tf"
-      git_last_modified_at = "2024-03-05 14:09:16"
-      git_last_modified_by = "kwame_mintah@hotmail.co.uk"
-      git_modifiers        = "kwame_mintah"
-      git_org              = "kwame-mintah"
-      git_repo             = "terraform-aws-machine-learning-pipeline"
-      yor_name             = "sagemaker_notebook_instances"
-      yor_trace            = "8627a100-8d39-4c55-92ed-72d9aa296b40"
-  })
-}
-
-resource "aws_cloudwatch_log_group" "sagemaker_training_jobs" {
-  name              = "/aws/sagemaker-${var.name}/TrainingJobs"
-  kms_key_id        = aws_kms_key.kms.arn # Same KMS as SageMaker?
-  retention_in_days = "7"
-
-  tags = merge(
-    local.common_tags
-    , {
-      git_commit           = "2ea159789703d32889ae6e57b5c6005e6b6ac7b8"
-      git_file             = "modules/sagemaker/main.tf"
-      git_last_modified_at = "2024-03-05 14:09:16"
-      git_last_modified_by = "kwame_mintah@hotmail.co.uk"
-      git_modifiers        = "kwame_mintah"
-      git_org              = "kwame-mintah"
-      git_repo             = "terraform-aws-machine-learning-pipeline"
-      yor_name             = "sagemaker_training_jobs"
-      yor_trace            = "72fae4f5-f38e-4bab-b261-8dc462b95e68"
-  })
-}
-
-resource "aws_cloudwatch_log_group" "sagemaker_endpoints" {
-  name              = "/aws/sagemaker-${var.name}/Endpoints/linear-learner"
-  kms_key_id        = aws_kms_key.kms.arn # Same KMS as SageMaker?
-  retention_in_days = "7"
-
-  tags = merge(
-    local.common_tags,
-    {
-      git_commit           = "2ea159789703d32889ae6e57b5c6005e6b6ac7b8"
-      git_file             = "modules/sagemaker/main.tf"
-      git_last_modified_at = "2024-03-05 14:09:16"
-      git_last_modified_by = "kwame_mintah@hotmail.co.uk"
-      git_modifiers        = "kwame_mintah"
-      git_org              = "kwame-mintah"
-      git_repo             = "terraform-aws-machine-learning-pipeline"
-      yor_name             = "sagemaker_endpoints"
-      yor_trace            = "03641519-4501-4690-826b-7fbb3d118018"
-  })
-}
-
-resource "aws_cloudwatch_log_group" "processing_jobs" {
-  name              = "/aws/sagemaker-${var.name}/ProcessingJobs"
-  kms_key_id        = aws_kms_key.kms.arn # Same KMS as SageMaker?
-  retention_in_days = "7"
-
-  tags = merge(
-    local.common_tags,
-    {
-      git_commit           = "2ea159789703d32889ae6e57b5c6005e6b6ac7b8"
-      git_file             = "modules/sagemaker/main.tf"
-      git_last_modified_at = "2024-03-05 14:09:16"
-      git_last_modified_by = "kwame_mintah@hotmail.co.uk"
-      git_modifiers        = "kwame_mintah"
-      git_org              = "kwame-mintah"
-      git_repo             = "terraform-aws-machine-learning-pipeline"
-      yor_name             = "processing_jobs"
-      yor_trace            = "74413d7b-7710-4622-b46a-1c6df1377c38"
-  })
-}
-
-resource "aws_cloudwatch_log_group" "endpoints" {
-  name              = "/aws/sagemaker-${var.name}/Endpoints"
-  kms_key_id        = aws_kms_key.kms.arn # Same KMS as SageMaker?
-  retention_in_days = "7"
-
-  tags = merge(
-    local.common_tags,
-    {
-      git_commit           = "2ea159789703d32889ae6e57b5c6005e6b6ac7b8"
-      git_file             = "modules/sagemaker/main.tf"
-      git_last_modified_at = "2024-03-05 14:09:16"
-      git_last_modified_by = "kwame_mintah@hotmail.co.uk"
-      git_modifiers        = "kwame_mintah"
-      git_org              = "kwame-mintah"
-      git_repo             = "terraform-aws-machine-learning-pipeline"
-      yor_name             = "endpoints"
-      yor_trace            = "ddb05177-7cbf-49ba-a6ce-ba0c70906746"
-  })
 }

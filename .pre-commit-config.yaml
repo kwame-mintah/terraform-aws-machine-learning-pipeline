@@ -1,14 +1,14 @@
 repos:
-# - repo: https://github.com/bridgecrewio/yor # Get the latest from: https://github.com/bridgecrewio/yor/releases
-#   rev: 0.1.198
-#   hooks:
-#     - id: yor
-#       name: yor
-#       entry: yor tag -d
-#       args: ["."]
-#       language: golang
-#       types: [terraform]
-#       pass_filenames: false
+- repo: https://github.com/bridgecrewio/yor # Get the latest from: https://github.com/bridgecrewio/yor/releases
+  rev: 0.1.198
+  hooks:
+    - id: yor
+      name: yor
+      entry: yor tag -d
+      args: ["."]
+      language: golang
+      types: [terraform]
+      pass_filenames: false
 - repo: https://github.com/gruntwork-io/pre-commit
   rev: v0.1.23 # Get the latest from: https://github.com/gruntwork-io/pre-commit/releases
   hooks:
